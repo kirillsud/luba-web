@@ -19,7 +19,7 @@ jobs:
         node-version: 18.x
         cache: 'npm'
     - run: npm ci
-    - run: npx nx link
+    - run: npx nx lint
     - run: npx nx format:check
     - run: npm run build
     - run: npm run test

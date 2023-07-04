@@ -8,13 +8,11 @@ export interface MainMenuProps {}
 export function MainMenu(props: MainMenuProps) {
   return (
     <div className={styles['container']}>
-      
       <ul>
         <li>
           <Link to="/">MainMenu root</Link>
         </li>
       </ul>
-
     </div>
   );
 }

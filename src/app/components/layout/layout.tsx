@@ -8,8 +8,8 @@ export interface LayoutProps {}
 export function Layout(props: LayoutProps) {
   return (
     <div className={styles['container']}>
-     <MainMenu/>
-     <Outlet/>
+      <MainMenu />
+      <Outlet />
     </div>
   );
 }

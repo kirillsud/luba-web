@@ -11,6 +11,7 @@ export function MainMenu(props: MainMenuProps) {
       <ul>
         <li>
           <Link to="/">MainMenu root</Link>
+          <Link to="/project">ProjectPage root</Link>
         </li>
       </ul>
     </div>

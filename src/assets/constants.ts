@@ -48,5 +48,9 @@ export const galleryImages:{img: string, id: number}[] = [
     {
       id: 12,
       img: "https://images.pexels.com/photos/1712/sunglasses-apple-iphone-desk.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+      id: 12,
+      img: "https://images.pexels.com/photos/1712/sunglasses-apple-iphone-desk.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     }
   ]

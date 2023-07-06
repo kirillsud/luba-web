@@ -38,21 +38,27 @@ export function ProjectPage(props: ProjectPageProps) {
   };
 
   return (
-
-
-
-
     <div className={styles.project_page}>
-      {openModal && 
+      {openModal && (
         <div className={styles.slider_wrap}>
-          <ArrowCircleLeftTwoToneIcon className={styles.btn_prev} onClick={prevSlide} />
-          <ArrowCircleRightTwoToneIcon className={styles.btn_next } onClick={nextSlide} />
-          <HighlightOffTwoToneIcon  className={styles.btn_close} onClick={handleCloseModal} fontSize="large"/>
+          <ArrowCircleLeftTwoToneIcon
+            className={styles.btn_prev}
+            onClick={prevSlide}
+          />
+          <ArrowCircleRightTwoToneIcon
+            className={styles.btn_next}
+            onClick={nextSlide}
+          />
+          <HighlightOffTwoToneIcon
+            className={styles.btn_close}
+            onClick={handleCloseModal}
+            fontSize="large"
+          />
           <div className={styles.full_screen_image}>
-            <img src={props.galleryImages[slideNumber].img} alt='' />
+            <img src={props.galleryImages[slideNumber].img} alt="" />
           </div>
         </div>
-      }
+      )}
       <h1>MY PROJECT</h1>
       <div className={styles.container}>
         <div>
@@ -62,7 +68,7 @@ export function ProjectPage(props: ProjectPageProps) {
                 <div
                   className={styles.img}
                   key={pic.id}
-                  onClick={ () => handleOpenModal(index) }
+                  onClick={() => handleOpenModal(index)}
                 >
                   <img
                     src={pic.img}

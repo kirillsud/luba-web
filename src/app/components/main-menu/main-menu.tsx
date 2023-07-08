@@ -8,12 +8,11 @@ import logo from '../../../../images/ginko.jpeg';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
-
 /* eslint-disable-next-line */
 
 export interface PortfolioMenuItem {
   title: string;
-  slug: string;
+  url: string;
 }
 export interface MainMenuProps {
   portfolio: Array<PortfolioMenuItem>;
@@ -32,9 +31,11 @@ export function MainMenu(props: MainMenuProps) {
             Portfolio
             <ul className={styles['drop']}>
               {props.portfolio.map((portfolioItem) => (
-              <li  key={portfolioItem.slug}>
-                <Link to={`/${portfolioItem.slug}`}>{portfolioItem.title}</Link>
-              </li>
+                <li key={portfolioItem.url}>
+                  <Link to={`/${portfolioItem.url}`}>
+                    {portfolioItem.title}
+                  </Link>
+                </li>
               ))}
             </ul>
           </li>

@@ -6,7 +6,7 @@
 .container {
   margin: 0;
   padding: 0;
-  position:fixed;
+  position: fixed;
   width: 200px;
   top: 0;
   left: 0;
@@ -43,13 +43,17 @@
   cursor: pointer;
 }
 
+.menu_list.menu:hover {
+  color: pink;
+}
+
 .drop {
   display: none;
   position: absolute;
-      background-color: #f1f1f1;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
   /* margin-left: -350px;
   padding: 10px;
   margin-top: 17px;
@@ -66,13 +70,13 @@
   display: block;
 }
 
-.menu:hover .drop {
+.menu_list:hover .drop {
   display: block;
   position: absolute;
   /* top: 120px; */
   z-index: 9999;
   width: 100px;
-  background-color:rgb(228, 221, 214);
+  background-color: rgb(228, 221, 214);
   border-color: black;
 }
 
@@ -89,5 +93,5 @@
 }
 
 .contacts_item {
-/* margin: 10px; */
+  /* margin: 10px; */
 }

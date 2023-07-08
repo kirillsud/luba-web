@@ -14,7 +14,7 @@ const portfolio = [
 export function Layout(props: LayoutProps) {
   return (
     <div className={styles['container']}>
-      <MainMenu  portfolio={portfolio}/>
+      <MainMenu portfolio={portfolio} />
       <div className={styles['page']}>
         <Outlet />
       </div>

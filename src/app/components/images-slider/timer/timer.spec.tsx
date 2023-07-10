@@ -4,12 +4,14 @@ import Timer from './timer';
 
 describe('Timer', () => {
   it('should render successfully', () => {
+    const finish = jest.fn();
+
     const { baseElement } = render(
       <Timer
         play={false}
         pause={false}
         duration={2 as Seconds}
-        finish={() => {}}
+        finish={finish}
       />
     );
     expect(baseElement).toBeTruthy();

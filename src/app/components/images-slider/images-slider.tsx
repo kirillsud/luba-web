@@ -1,6 +1,9 @@
-import { Component, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { ArrowForwardIos, ArrowBackIosNew } from '@mui/icons-material';
 
 import styles from './images-slider.module.css';
+import Timer from './timer/timer';
+import { Seconds } from 'src/app/utils/units';
 
 export interface Slide {
   imageUrl: string;
@@ -12,82 +15,77 @@ export interface ImagesSliderProps {
   slides: Slide[];
 }
 
-export interface ImagesSliderState {
-  currentSlide: number;
-}
+export function ImagesSlider({ slides }: ImagesSliderProps) {
+  const duration: Seconds = 10 as Seconds;
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [play, setPlay] = useState(false);
+  const [pause, setPause] = useState(false);
 
-export class ImagesSlider extends Component<
-  ImagesSliderProps,
-  ImagesSliderState
-> {
-  private intervalId?: NodeJS.Timer;
+  useEffect(() => setSlide(0), []);
 
-  constructor(props: ImagesSliderProps) {
-    super(props);
+  useEffect(() => {
+    setPlay(false);
+    // TODO: Find a better way to start the slider,
+    //      because this solution depends on the client's render speed.
+    //      If the client is slow, the timer will start too early.
+    setTimeout(() => setPlay(true), 100);
+  }, [currentSlide]);
 
-    this.state = {
-      currentSlide: 0,
-    };
+  function setSlide(slide: number) {
+    setCurrentSlide((slides.length + slide) % slides.length);
   }
 
-  override componentDidMount(): void {
-    this.intervalId = setInterval(() => {
-      this.setSlide(this.state.currentSlide + 1);
-    }, 10000);
+  function prevSlide() {
+    setSlide(currentSlide - 1);
   }
 
-  override componentWillUnmount(): void {
-    clearInterval(this.intervalId);
+  function nextSlide() {
+    setSlide(currentSlide + 1);
   }
 
-  override render() {
-    const slide = this.props.slides[this.state.currentSlide];
+  function pauseTimer() {
+    setPause(true);
+  }
 
-    const slideContent = (
-      <>
-        <img src={slide.imageUrl} alt={slide.text} />
-        {slide.text ? (
-          <span>{this.props.slides[this.state.currentSlide].text}</span>
-        ) : null}
-      </>
-    );
+  function resumeTimer() {
+    setPause(false);
+  }
 
-    return (
-      <div className={styles['container']}>
-        {slide.slideUrl ? (
-          <a className={styles['slide']} href={slide.slideUrl}>
-            {slideContent}
-          </a>
-        ) : (
-          <div className={styles['slide']}>{slideContent}</div>
-        )}
-        <div className={styles['controls']}>
-          <button
-            className={styles['prev']}
-            onClick={this.setSlide(this.state.currentSlide - 1)}
-          >
-            Prev
-          </button>
-          <button
-            className={styles['next']}
-            onClick={this.setSlide(this.state.currentSlide + 1)}
-          >
-            Next
-          </button>
-        </div>
+  const slide = slides[currentSlide];
+
+  const slideContent = (
+    <>
+      <img src={slide.imageUrl} alt={slide.text} />
+      {slide.text ? <span>{slides[currentSlide].text}</span> : null}
+    </>
+  );
+
+  return (
+    <div
+      className={styles['container']}
+      onMouseOver={pauseTimer}
+      onMouseLeave={resumeTimer}
+    >
+      {slide.slideUrl ? (
+        <a className={styles['slide']} href={slide.slideUrl}>
+          {slideContent}
+        </a>
+      ) : (
+        <div className={styles['slide']}>{slideContent}</div>
+      )}
+
+      <div className={styles['controls']}>
+        <button className={styles['prev']} onClick={prevSlide}>
+          <ArrowBackIosNew />
+        </button>
+        <button className={styles['next']} onClick={nextSlide}>
+          <ArrowForwardIos />
+        </button>
       </div>
-    );
-  }
 
-  private setSlide(slide: number) {
-    return () => {
-      this.setState((state) => ({
-        ...state,
-        currentSlide:
-          (this.props.slides.length + slide) % this.props.slides.length,
-      }));
-    };
-  }
+      <Timer play={play} pause={pause} duration={duration} finish={nextSlide} />
+    </div>
+  );
 }
 
 export default ImagesSlider;

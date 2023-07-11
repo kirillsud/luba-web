@@ -36,20 +36,14 @@ export function MainMenu(props: MainMenuProps) {
               ))}
             </ul>
           </li>
-          <li>
-            <Link to="/aboutme" className={styles['menu_list']}>
-              About me
-            </Link>
+          <li className={styles['menu_list']}>
+            <Link to="/aboutme">About me</Link>
           </li>
-          <li>
-            <Link to="/faq" className={styles['menu_list']}>
-              Faq
-            </Link>
+          <li className={styles['menu_list']}>
+            <Link to="/faq">Faq</Link>
           </li>
-          <li>
-            <Link to="/contacts" className={styles['menu_list']}>
-              Contacts
-            </Link>
+          <li className={styles['menu_list']}>
+            <Link to="/contacts">Contacts</Link>
           </li>
         </ul>
 

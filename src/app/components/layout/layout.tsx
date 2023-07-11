@@ -1,20 +1,23 @@
 import { Outlet } from 'react-router-dom';
-import MainMenu from '../main-menu/main-menu';
+import MainMenu, { PortfolioMenuItem } from '../main-menu/main-menu';
+
 import styles from './layout.module.css';
 
 /* eslint-disable-next-line */
 export interface LayoutProps {}
 
-const portfolio = [
-  { title: 'Scetches1', url: 'scetches1' },
-  { title: 'Scetches2', url: 'scetches2' },
-  { title: 'Scetches3', url: 'scetches3' },
+const portfolio: PortfolioMenuItem[] = [
+  { title: 'Original art', slug: 'original-art' },
+  { title: 'Client work', slug: 'client-work' },
+  { title: 'Rough', slug: 'rough' },
 ];
 
 export function Layout(props: LayoutProps) {
   return (
     <div className={styles['container']}>
-      <MainMenu portfolio={portfolio} />
+      <div className={styles['menu']}>
+        <MainMenu portfolio={portfolio} />
+      </div>
       <div className={styles['page']}>
         <Outlet />
       </div>

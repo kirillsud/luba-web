@@ -9,7 +9,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 export interface PortfolioMenuItem {
   title: string;
-  url: string;
+  slug: string;
 }
 export interface MainMenuProps {
   portfolio: Array<PortfolioMenuItem>;
@@ -26,10 +26,10 @@ export function MainMenu(props: MainMenuProps) {
         <ul className={styles['menu']}>
           <li className={styles['menu_list']}>
             Portfolio
-            <ul className={styles['drop']}>
+            <ul className={styles['menu'] + ' ' + styles['drop']}>
               {props.portfolio.map((portfolioItem) => (
-                <li key={portfolioItem.url}>
-                  <Link to={`/portfolio/${portfolioItem.url}`}>
+                <li key={portfolioItem.slug} className={styles['menu_list']}>
+                  <Link to={`/portfolio/${portfolioItem.slug}`}>
                     {portfolioItem.title}
                   </Link>
                 </li>

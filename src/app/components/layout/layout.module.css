@@ -1,9 +1,8 @@
 .container {
-  box-sizing: border-box;
   display: flex;
 }
 
-* {
-  margin: 0;
-  padding: 0;
+.page {
+  flex-grow: 1;
+  padding: 1rem;
 }

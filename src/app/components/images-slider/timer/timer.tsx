@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Seconds } from 'src/app/utils/units';
 
 import styles from './timer.module.css';
@@ -11,47 +11,56 @@ export interface TimerProps {
 }
 
 export function Timer({ play, pause, duration, finish }: TimerProps) {
-  const [intervalId, setIntervalId] = useState<NodeJS.Timer>();
+  const intervalId = useRef<NodeJS.Timer>();
   const [start, setStart] = useState(0 as Seconds);
 
-  useEffect(() => () => clearInterval(intervalId), []);
-  useEffect(() => (play ? startTimer(start) : stopTimer()), [play]);
-  useEffect(() => (pause ? pauseTimer() : resumeTimer()), [pause]);
+  const startTimer = useCallback(
+    (start = 0 as Seconds, force = false) => {
+      const intervalStep = 0.05 as Seconds;
 
-  function startTimer(start: Seconds = 0 as Seconds, force = false) {
-    const intevalStep: Seconds = 0.05 as Seconds;
-
-    if (pause && !force) {
-      return;
-    }
-
-    clearInterval(intervalId);
-
-    const newIntervalId = setInterval(() => {
-      start = ((start + intevalStep) % duration) as Seconds;
-      setStart(start as Seconds);
-
-      if (start < intevalStep) {
-        finish();
-        clearInterval(newIntervalId);
+      if (pause && !force) {
+        return;
       }
-    }, intevalStep * 1000);
 
-    setIntervalId(newIntervalId);
-  }
+      clearInterval(intervalId.current);
 
-  function stopTimer() {
-    clearInterval(intervalId);
+      const newIntervalId = setInterval(() => {
+        start = ((start + intervalStep) % duration) as Seconds;
+        setStart(start as Seconds);
+
+        if (start < intervalStep) {
+          finish();
+          clearInterval(newIntervalId);
+        }
+      }, intervalStep * 1000);
+
+      intervalId.current = newIntervalId;
+    },
+    [duration, finish, pause]
+  );
+
+  const stopTimer = useCallback(() => {
+    clearInterval(intervalId.current);
     setStart(0 as Seconds);
-  }
+  }, []);
 
-  function pauseTimer() {
-    clearInterval(intervalId);
-  }
+  const pauseTimer = useCallback(() => {
+    clearInterval(intervalId.current);
+  }, []);
 
-  function resumeTimer() {
+  const resumeTimer = useCallback(() => {
     startTimer(start, true);
-  }
+  }, [start, startTimer]);
+
+  useEffect(() => () => clearInterval(intervalId.current), []);
+  useEffect(
+    () => (play ? startTimer(start) : stopTimer()),
+    [play, start, startTimer, stopTimer]
+  );
+  useEffect(
+    () => (pause ? pauseTimer() : resumeTimer()),
+    [pause, pauseTimer, resumeTimer]
+  );
 
   const startClass = play ? styles['play'] : '';
   const pauseClass = pause ? styles['pause'] : '';

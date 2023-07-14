@@ -4,66 +4,89 @@
 }
 
 .container {
-  margin: 0;
-  padding: 0;
+  --menu-color: #ffe4c4;
+  --drop-color: #ffd3a0;
+  --menu-color-hover: #ffc27e;
+
   position: fixed;
+  display: flex;
+  flex-direction: column;
   width: 200px;
   top: 0;
   left: 0;
   bottom: 0;
-  background-color: bisque;
-  z-index: 9999;
+  background-color: var(--menu-color);
+  z-index: 100;
 }
 
 .logo {
-  margin: 25px;
+  margin: 25px auto;
+}
+
+.logo img {
   border-radius: 350px;
   height: 150px;
   width: 150px;
 }
 
 .menu {
-  position: relative;
-  border-color: blue;
   list-style-type: none;
-}
-
-.menu_list {
-  position: relative;
+  flex-grow: 1;
   margin: 0;
-  padding: 0.25rem 0;
+  padding: 0;
 }
 
-.menu_list.menu:hover {
-  color: pink;
+.menu > li {
+  position: relative;
+}
+
+.menu_item {
+  font-family: 'Roboto', sans-serif;
+  padding: 0.7rem 2rem;
+  color: var(--text-color);
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 1.2rem;
+  text-transform: uppercase;
+}
+
+.menu_item:not(a) {
+  cursor: default;
+}
+
+.menu_item:hover {
+  color: var(--link-color-hover);
+  background-color: var(--menu-color-hover);
 }
 
 .drop {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
+  background-color: var(--drop-color);
+  top: 0;
   left: calc(100% - 1rem);
-  min-width: 160px;
+  width: 13rem;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.menu_list:hover .drop {
+.menu_item:hover .drop {
   display: block;
-  position: absolute;
-  top: 0;
-  width: 100px;
-  background-color: rgb(228, 221, 214);
-  border-color: black;
 }
 
 .contacts {
-  margin-right: 50px;
-  margin-left: 50px;
+  margin: auto;
   padding: 0;
-  position: fixed;
   display: flex;
-  bottom: 0;
-  left: 0;
   list-style-type: none;
-  color: black;
+}
+
+.contacts a {
+  color: var(--text-color);
+  margin: 0.3rem;
+}
+
+.contacts a:hover {
+  color: var(--link-color-hover);
 }

@@ -1,49 +1,61 @@
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-
 import styles from './main-menu.module.css';
-
 import logo from '../../../../images/ginko.jpeg';
-
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import ArrowForwardIos from '@mui/icons-material/ArrowForwardIos';
 
 export interface PortfolioMenuItem {
   title: string;
   slug: string;
 }
+
 export interface MainMenuProps {
   portfolio: Array<PortfolioMenuItem>;
 }
 
-export function MainMenu(props: MainMenuProps) {
+export function MainMenu({ portfolio }: MainMenuProps) {
   return (
     <>
       <div className={styles['placeholder']}></div>
       <div className={styles['container']}>
-        <Link to="/">
-          <img className={styles['logo']} src={logo} alt="logo luba" />
+        <Link to="/" className={styles['logo']}>
+          <img src={logo} alt="logo luba" />
         </Link>
+
         <ul className={styles['menu']}>
-          <li className={styles['menu_list']}>
-            Portfolio
-            <ul className={styles['menu'] + ' ' + styles['drop']}>
-              {props.portfolio.map((portfolioItem) => (
-                <li key={portfolioItem.slug} className={styles['menu_list']}>
-                  <Link to={`/portfolio/${portfolioItem.slug}`}>
-                    {portfolioItem.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <li>
+            <span className={styles['menu_item']}>
+              Portfolio <ArrowForwardIos />
+              <ul className={classNames(styles['menu'], styles['drop'])}>
+                {portfolio.map((portfolioItem) => (
+                  <li key={portfolioItem.slug}>
+                    <Link
+                      to={`/portfolio/${portfolioItem.slug}`}
+                      className={styles['menu_item']}
+                    >
+                      {portfolioItem.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </span>
           </li>
-          <li className={styles['menu_list']}>
-            <Link to="/aboutme">About me</Link>
+          <li>
+            <Link to="/aboutme" className={styles['menu_item']}>
+              About me
+            </Link>
           </li>
-          <li className={styles['menu_list']}>
-            <Link to="/faq">Faq</Link>
+          <li>
+            <Link to="/faq" className={styles['menu_item']}>
+              Faq
+            </Link>
           </li>
-          <li className={styles['menu_list']}>
-            <Link to="/contacts">Contacts</Link>
+          <li>
+            <Link to="/contacts" className={styles['menu_item']}>
+              Contacts
+            </Link>
           </li>
         </ul>
 

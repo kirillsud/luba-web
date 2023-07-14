@@ -31,7 +31,7 @@
 .menu_list {
   position: relative;
   margin: 0;
-  padding: .25rem 0;
+  padding: 0.25rem 0;
 }
 
 .menu_list.menu:hover {
@@ -44,7 +44,7 @@
   background-color: #f1f1f1;
   left: calc(100% - 1rem);
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .menu_list:hover .drop {

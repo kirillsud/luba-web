@@ -6,7 +6,7 @@ describe('MainMenu', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
       <MemoryRouter>
-        <MainMenu />
+        <MainMenu portfolio={[]} />
       </MemoryRouter>
     );
     expect(baseElement).toBeTruthy();

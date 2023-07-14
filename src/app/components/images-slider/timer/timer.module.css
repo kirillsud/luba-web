@@ -1,0 +1,26 @@
+.container {
+  --duration: 1; /* default duration in seconds */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: var(--text-background);
+  transform-origin: right center;
+  transform: scaleX(1);
+}
+
+.play {
+  animation: roundtime calc(var(--duration) * 1s) linear forwards;
+}
+
+.pause {
+  animation-play-state: paused;
+}
+
+@keyframes roundtime {
+  to {
+    /* More performant than animating `width` */
+    transform: scaleX(0);
+  }
+}

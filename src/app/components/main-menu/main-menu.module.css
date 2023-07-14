@@ -12,11 +12,11 @@
   left: 0;
   bottom: 0;
   background-color: bisque;
+  z-index: 9999;
 }
 
 .logo {
-  margin-top: 25px;
-  margin-left: 25px;
+  margin: 25px;
   border-radius: 350px;
   height: 150px;
   width: 150px;
@@ -31,7 +31,7 @@
 .menu_list {
   position: relative;
   margin: 0;
-  padding: 0;
+  padding: 0.25rem 0;
 }
 
 .menu_list.menu:hover {
@@ -42,22 +42,15 @@
   display: none;
   position: absolute;
   background-color: #f1f1f1;
+  left: calc(100% - 1rem);
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-.dropdown-content .drop {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .menu_list:hover .drop {
   display: block;
   position: absolute;
-  z-index: 9999;
+  top: 0;
   width: 100px;
   background-color: rgb(228, 221, 214);
   border-color: black;

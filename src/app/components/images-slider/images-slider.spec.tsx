@@ -1,12 +1,8 @@
-import ImagesSlider, {
-  Slide,
-} from '../../components/images-slider/images-slider';
-import styles from './index-page.module.css';
+import { render } from '@testing-library/react';
 
-/* eslint-disable-next-line */
-export interface IndexPageProps {}
+import ImagesSlider from './images-slider';
 
-export function IndexPage(props: IndexPageProps) {
+describe('ImagesSlider', () => {
   const slides: Slide[] = [
     {
       imageUrl: '/assets/1635593722082.jpeg',
@@ -25,11 +21,8 @@ export function IndexPage(props: IndexPageProps) {
     },
   ];
 
-  return (
-    <div className={styles['container']}>
-      <ImagesSlider slides={slides} />
-    </div>
-  );
-}
-
-export default IndexPage;
+  it('should render successfully', () => {
+    const { baseElement } = render(<ImagesSlider slides={slides} />);
+    expect(baseElement).toBeTruthy();
+  });
+});

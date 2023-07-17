@@ -6,6 +6,7 @@ import IndexPage from './app/pages/index-page/index-page';
 import ProjectPage from './app/pages/project-page/project-page';
 import Layout from './app/components/layout/layout';
 import { galleryImages } from './assets/constants';
+import PortfolioPage from './app/pages/portfolio-page/portfolio-page';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: 'project',
         element: <ProjectPage galleryImages={galleryImages} />,
+      },
+      {
+        path: 'portfolio/:type',
+        element:  <PortfolioPage portfolio={galleryImages} title='PORTFOLIO' />
       },
     ],
   },

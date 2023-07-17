@@ -1,0 +1,37 @@
+.portfolio_page {
+    width: calc(100% - 200px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0 15px;
+    margin-left: 200px;
+  }
+  
+  h1 {
+    margin-bottom: 30px;
+    color: #8697bf;
+  }
+  
+  .container {
+    margin: 0;
+    column-count: 3;
+    column-width: 33,333%;
+    padding: 0 12px;
+  }
+  
+  .img {
+    /* opacity: 0; */
+    /* transition: transform 0.4s, opacity 0.4s;
+    z-index: -1;
+    position: relative;
+    height: auto;
+    display: block; */
+    width: 100%;
+ 
+  }
+  
+  .container .img:hover {
+    transform: scale(1.02);
+    opacity: 0.8;
+  }

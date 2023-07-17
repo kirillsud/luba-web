@@ -18,7 +18,7 @@ export interface MainMenuProps {
 export function MainMenu(props: MainMenuProps) {
   return (
     <>
-      <div className={styles['placeholder']}></div>
+      {/* <div className={styles['placeholder']}></div> */}
       <div className={styles['container']}>
         <Link to="/">
           <img className={styles['logo']} src={logo} alt="logo luba" />

@@ -6,9 +6,9 @@ import styles from './layout.module.css';
 export interface LayoutProps {}
 
 const portfolio = [
-  { title: 'Scetches1', url: 'scetches1' },
-  { title: 'Scetches2', url: 'scetches2' },
-  { title: 'Scetches3', url: 'scetches3' },
+  { title: 'ORIGINAL ART', url: 'original-art' },
+  { title: 'CLIENT WORK', url: 'client-work' },
+  { title: 'SKETCH', url: 'sketch' },
 ];
 
 export function Layout(props: LayoutProps) {

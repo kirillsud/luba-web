@@ -1,9 +1,6 @@
-:root {
-  --text-color: #444;
-  --text-background: rgba(255, 255, 255, 0.7);
-}
-
 .container {
+  --text-background: rgba(255, 255, 255, 0.7);
+
   display: block;
   position: relative;
   height: 100vh;
@@ -39,6 +36,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .slide span {
@@ -79,7 +77,7 @@
 }
 
 .controls button:hover {
-  color: #ff0000;
+  color: var(--link-color-hover);
 }
 
 .controls button:disabled {

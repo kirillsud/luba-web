@@ -1,3 +1,17 @@
+:root {
+  --text-color: #21380a;
+  --link-color: #467714;
+  --link-color-hover: #55a103;
+}
+
 body {
   margin: 0;
+}
+
+a {
+  color: var(--link-color);
+}
+
+a:hover {
+  color: var(--link-color-hover);
 }

@@ -10,10 +10,19 @@ import {
 } from '@storyblok/react';
 import { environment } from '../../environments/environment';
 
-export async function loadStory(slug: string): Promise<ISbStoryData> {
+/**
+ * Loads a Storyblok story by slug and a content type.
+ * @param slug
+ * @param type
+ */
+export async function loadStory(
+  slug: string,
+  type: string
+): Promise<ISbStoryData> {
   const storyblokApi = getStoryblokApi();
   const { data } = await storyblokApi.get(`cdn/stories/${slug}`, {
     version: environment.production ? 'published' : 'draft',
+    content_type: type,
   });
 
   return data.story;

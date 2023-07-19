@@ -35,7 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: ':slug',
-        loader: async ({ params: { slug } }) => loadStory(slug!),
+        loader: async ({ params: { slug } }) => loadStory(slug!, 'page2'),
         element: <CustomPage />,
       },
     ],

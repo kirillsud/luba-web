@@ -6,7 +6,7 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "storyblok-types:generate": "storyblok pull-components --space=241820 && storyblok-generate-ts source=./components.241820.json target=./components.241820 && nx format:write"
+    "storyblok:update-types": "storyblok pull-components --space=241820 -p ./src/app/utils/ -f storyblok && storyblok-generate-ts source=./src/app/utils/components.storyblok.json target=./src/app/utils/components.storyblok && nx format:write"
   },
   "private": true,
   "dependencies": {

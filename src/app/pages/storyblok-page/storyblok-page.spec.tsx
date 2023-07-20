@@ -1,15 +1,15 @@
 import { render } from '@testing-library/react';
 
-import CustomPage from './custom-page';
+import StoryblokPage from './storyblok-page';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 
-xdescribe('CustomPage', () => {
+xdescribe('StoryblokPage', () => {
   it('should render successfully', () => {
     const story = {};
     const routes = [
       {
         path: '/:slug',
-        element: <CustomPage />,
+        element: <StoryblokPage />,
         loader: () => story,
       },
     ];

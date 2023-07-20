@@ -1,14 +1,21 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import MainMenu from './main-menu';
 
+jest.mock('@storyblok/react', () => ({
+  getStoryblokApi: () => ({
+    getStories: () => Promise.resolve({ data: { stories: [] } }),
+  }),
+}));
+
 describe('MainMenu', () => {
-  it('should render successfully', () => {
-    const { baseElement } = render(
+  it('should render successfully', async () => {
+    render(
       <MemoryRouter>
-        <MainMenu portfolio={[]} />
+        <MainMenu />
       </MemoryRouter>
     );
-    expect(baseElement).toBeTruthy();
+
+    expect(await screen.findByText('Portfolio')).toBeTruthy();
   });
 });

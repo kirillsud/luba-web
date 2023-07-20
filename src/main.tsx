@@ -5,10 +5,11 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { environment } from './environments/environment';
 import IndexPage from './app/pages/index-page/index-page';
-import ProjectPage from './app/pages/project-page/project-page';
-import CustomPage, { Page } from './app/pages/custom-page/custom-page';
+import StoryblokPage from './app/pages/storyblok-page/storyblok-page';
 import Layout from './app/components/layout/layout';
-import QuestionAnswer from './app/components/question-answer/question-answer';
+import QuestionAnswer from './app/components/storyblok/question-answer/question-answer';
+import Page from './app/components/storyblok/page/page';
+import Project from './app/components/storyblok/project/project';
 import { loadStory } from './app/utils/storyblok';
 
 storyblokInit({
@@ -16,6 +17,7 @@ storyblokInit({
   use: [apiPlugin],
   components: {
     page: Page,
+    project: Project,
     'question-answer': QuestionAnswer,
   },
 });
@@ -30,13 +32,20 @@ const router = createBrowserRouter([
         element: <IndexPage />,
       },
       {
-        path: 'project',
-        element: <ProjectPage />,
+        path: 'projects/:slug',
+        element: <StoryblokPage />,
+        loader: async ({ params: { slug } }) => {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          return loadStory(`projects/${slug!}`, 'project');
+        },
       },
       {
         path: ':slug',
-        loader: async ({ params: { slug } }) => loadStory(slug!, 'page'),
-        element: <CustomPage />,
+        element: <StoryblokPage />,
+        loader: async ({ params: { slug } }) => {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          return loadStory(slug!, 'page');
+        },
       },
     ],
   },

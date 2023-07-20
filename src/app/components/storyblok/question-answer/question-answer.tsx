@@ -1,7 +1,7 @@
 import { storyblokEditable } from '@storyblok/react';
 import { QuestionAnswer as IconQuestionAnswer } from '@mui/icons-material';
-import { render } from '../../utils/storyblok';
-import { QuestionAnswerStoryblok } from '../../../../components.241820';
+import { render } from '../../../utils/storyblok';
+import { QuestionAnswerStoryblok } from '../../../utils/components.storyblok';
 
 export interface QuestionAnswerProps {
   blok: QuestionAnswerStoryblok;

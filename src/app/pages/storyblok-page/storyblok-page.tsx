@@ -1,5 +1,5 @@
 import { StoryblokComponent, storyblokEditable } from '@storyblok/react';
-import { useStoryblokFromRoute } from '../../utils/storyblok';
+import { useStoryblokFromRoute } from './storyblok-page.hook';
 
 export function StoryblokPage() {
   const story = useStoryblokFromRoute();

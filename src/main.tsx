@@ -5,12 +5,11 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { environment } from './environments/environment';
 import IndexPage from './app/pages/index-page/index-page';
-import StoryblokPage from './app/pages/storyblok-page/storyblok-page';
+import { loadStory, StoryblokPage } from './app/pages/storyblok-page';
 import Layout from './app/components/layout/layout';
 import QuestionAnswer from './app/components/storyblok/question-answer/question-answer';
 import Page from './app/components/storyblok/page/page';
 import Project from './app/components/storyblok/project/project';
-import { loadStory } from './app/utils/storyblok';
 
 storyblokInit({
   accessToken: environment.storyblokAccessToken,

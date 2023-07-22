@@ -5,17 +5,47 @@ import logo from '../../../../images/ginko.jpeg';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import ArrowForwardIos from '@mui/icons-material/ArrowForwardIos';
+import { useEffect, useState } from 'react';
+import { getStoryblokApi, ISbStoryData } from '@storyblok/react';
+import { environment } from '../../../environments/environment';
 
-export interface PortfolioMenuItem {
+export interface MenuItem {
   title: string;
   slug: string;
 }
 
-export interface MainMenuProps {
-  portfolio: Array<PortfolioMenuItem>;
+function getMenuItemsByType(stories: ISbStoryData[], type: string): MenuItem[] {
+  return stories
+    .filter((x) => x.content.component === type)
+    .map((x) => ({
+      title: x.name,
+      slug: x.slug,
+    }));
 }
 
-export function MainMenu({ portfolio }: MainMenuProps) {
+export function MainMenu() {
+  const [portfolios, setPortfolios] = useState<MenuItem[]>([]);
+  const [pages, setPages] = useState<MenuItem[]>([]);
+
+  useEffect(() => {
+    const storyblokApi = getStoryblokApi();
+    storyblokApi
+      .getStories({
+        version: environment.production ? 'published' : 'draft',
+        filter_query: {
+          component: {
+            in: 'page,portfolio',
+          },
+        },
+        excluding_fields: 'content.body',
+        sort_by: 'content.order:asc',
+      })
+      .then(({ data: { stories } }) => {
+        setPages(getMenuItemsByType(stories, 'page'));
+        setPortfolios(getMenuItemsByType(stories, 'portfolio'));
+      });
+  }, []);
+
   return (
     <>
       <div className={styles['placeholder']}></div>
@@ -29,7 +59,7 @@ export function MainMenu({ portfolio }: MainMenuProps) {
             <span className={styles['menu_item']}>
               Portfolio <ArrowForwardIos />
               <ul className={classNames(styles['menu'], styles['drop'])}>
-                {portfolio.map((portfolioItem) => (
+                {portfolios.map((portfolioItem) => (
                   <li key={portfolioItem.slug}>
                     <Link
                       to={`/portfolio/${portfolioItem.slug}`}
@@ -42,21 +72,13 @@ export function MainMenu({ portfolio }: MainMenuProps) {
               </ul>
             </span>
           </li>
-          <li>
-            <Link to="/aboutme" className={styles['menu_item']}>
-              About me
-            </Link>
-          </li>
-          <li>
-            <Link to="/faq" className={styles['menu_item']}>
-              Faq
-            </Link>
-          </li>
-          <li>
-            <Link to="/contacts" className={styles['menu_item']}>
-              Contacts
-            </Link>
-          </li>
+          {pages.map((pageItem) => (
+            <li key={pageItem.slug}>
+              <Link to={`/${pageItem.slug}`} className={styles['menu_item']}>
+                {pageItem.title}
+              </Link>
+            </li>
+          ))}
         </ul>
 
         <ul className={styles['contacts']}>

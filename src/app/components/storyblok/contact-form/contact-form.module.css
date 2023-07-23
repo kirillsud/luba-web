@@ -11,6 +11,7 @@
   width: 5rem;
 }
 
-.form fieldset > input, .form fieldset > textarea {
+.form fieldset > input,
+.form fieldset > textarea {
   flex-grow: 1;
 }

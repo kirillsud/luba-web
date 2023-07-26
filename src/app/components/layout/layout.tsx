@@ -1,21 +1,21 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigation } from 'react-router-dom';
 import MainMenu from '../main-menu/main-menu';
+
 import styles from './layout.module.css';
 
 /* eslint-disable-next-line */
 export interface LayoutProps {}
 
-const portfolio = [
-  { title: 'ORIGINAL ART', url: 'original-art' },
-  { title: 'CLIENT WORK', url: 'client-work' },
-  { title: 'SKETCH', url: 'sketch' },
-];
-
 export function Layout(props: LayoutProps) {
+  const { state } = useNavigation();
+
   return (
     <div className={styles['container']}>
-      <MainMenu portfolio={portfolio} />
+      <div className={styles['menu']}>
+        <MainMenu />
+      </div>
       <div className={styles['page']}>
+        {state === 'loading' && <span className={styles['loader']}></span>}
         <Outlet />
       </div>
     </div>

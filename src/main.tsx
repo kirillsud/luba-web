@@ -1,12 +1,27 @@
+import { apiPlugin, storyblokInit } from '@storyblok/react';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
-
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
+import { environment } from './environments/environment';
 import IndexPage from './app/pages/index-page/index-page';
-import ProjectPage from './app/pages/project-page/project-page';
+import { loadStory, StoryblokPage } from './app/pages/storyblok-page';
 import Layout from './app/components/layout/layout';
+import QuestionAnswer from './app/components/storyblok/question-answer/question-answer';
+import Page from './app/components/storyblok/page/page';
+import Project from './app/components/storyblok/project/project';
 import { galleryImages } from './assets/constants';
 import PortfolioPage from './app/pages/portfolio-page/portfolio-page';
+
+storyblokInit({
+  accessToken: environment.storyblokAccessToken,
+  use: [apiPlugin],
+  components: {
+    page: Page,
+    project: Project,
+    'question-answer': QuestionAnswer,
+  },
+});
 
 const router = createBrowserRouter([
   {
@@ -18,12 +33,24 @@ const router = createBrowserRouter([
         element: <IndexPage />,
       },
       {
-        path: 'project',
-        element: <ProjectPage galleryImages={galleryImages} />,
+        path: 'portfolio/:slug',
+        element: <PortfolioPage portfolio={galleryImages} title='PORTFOLIO' />
       },
       {
-        path: 'portfolio/:type',
-        element:  <PortfolioPage portfolio={galleryImages} title='PORTFOLIO' />
+        path: 'projects/:slug',
+        element: <StoryblokPage />,
+        loader: async ({ params: { slug } }) => {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          return loadStory(`projects/${slug!}`, 'project');
+        },
+      },
+      {
+        path: ':slug',
+        element: <StoryblokPage />,
+        loader: async ({ params: { slug } }) => {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          return loadStory(slug!, 'page');
+        },
       },
     ],
   },

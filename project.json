@@ -12,7 +12,7 @@
         "compiler": "babel",
         "outputPath": "dist/luba-web",
         "index": "src/index.html",
-        "baseHref": "/",
+        "baseHref": "/luba-web/",
         "main": "src/main.tsx",
         "tsConfig": "tsconfig.app.json",
         "assets": ["src/favicon.ico", "src/assets"],

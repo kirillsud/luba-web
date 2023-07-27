@@ -48,6 +48,9 @@ jobs:
           fetch-depth: 0
       - uses: ./.github/actions/setup-workspace
       - run: npx nx build
+      - name: Prepare pages artifact
+        if: github.ref == 'refs/heads/main'
+        run: cp ./dist/luba-web/index.html ./dist/luba-web/404.html
       - name: Upload pages artifact
         if: github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v2

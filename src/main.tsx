@@ -10,6 +10,7 @@ import Layout from './app/components/layout/layout';
 import QuestionAnswer from './app/components/storyblok/question-answer/question-answer';
 import Page from './app/components/storyblok/page/page';
 import Project from './app/components/storyblok/project/project';
+import ContactForm from './app/components/storyblok/contact-form/contact-form';
 
 storyblokInit({
   accessToken: environment.storyblokAccessToken,
@@ -18,6 +19,7 @@ storyblokInit({
     page: Page,
     project: Project,
     'question-answer': QuestionAnswer,
+    'contact-form': ContactForm,
   },
 });
 

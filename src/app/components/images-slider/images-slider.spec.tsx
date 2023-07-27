@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import ImagesSlider from './images-slider';
+import ImagesSlider, { Slide } from './images-slider';
 
 describe('ImagesSlider', () => {
   const slides: Slide[] = [

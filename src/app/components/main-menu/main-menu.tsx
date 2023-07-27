@@ -1,22 +1,22 @@
-import classNames from 'classnames';
-import { Link } from 'react-router-dom';
-import styles from './main-menu.module.css';
-import logo from '../../../../images/ginko.jpeg';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import ArrowForwardIos from '@mui/icons-material/ArrowForwardIos';
+import { ISbStoryData } from '@storyblok/react';
 import { useEffect, useState } from 'react';
-import { getStoryblokApi, ISbStoryData } from '@storyblok/react';
-import { environment } from '../../../environments/environment';
+import classNames from 'classnames';
+import { Link, useLoaderData } from 'react-router-dom';
+import styles from './main-menu.module.css';
+import logo from '../../../../images/ginko.jpeg';
+import { RootLoaderData } from '../../../router';
 
 export interface MenuItem {
   title: string;
   slug: string;
 }
 
-function getMenuItemsByType(stories: ISbStoryData[], type: string): MenuItem[] {
-  return stories
-    .filter((x) => x.content.component === type)
+function toMenuItems(stories: ISbStoryData[]): MenuItem[] {
+  return [...stories]
+    .sort((a, b) => a.content.order - b.content.order)
     .map((x) => ({
       title: x.name,
       slug: x.slug,
@@ -24,27 +24,16 @@ function getMenuItemsByType(stories: ISbStoryData[], type: string): MenuItem[] {
 }
 
 export function MainMenu() {
+  const { mainMenu } = useLoaderData() as RootLoaderData;
   const [portfolios, setPortfolios] = useState<MenuItem[]>([]);
   const [pages, setPages] = useState<MenuItem[]>([]);
 
   useEffect(() => {
-    const storyblokApi = getStoryblokApi();
-    storyblokApi
-      .getStories({
-        version: environment.production ? 'published' : 'draft',
-        filter_query: {
-          component: {
-            in: 'page,portfolio',
-          },
-        },
-        excluding_fields: 'content.body',
-        sort_by: 'content.order:asc',
-      })
-      .then(({ data: { stories } }) => {
-        setPages(getMenuItemsByType(stories, 'page'));
-        setPortfolios(getMenuItemsByType(stories, 'portfolio'));
-      });
-  }, []);
+    if (mainMenu) {
+      setPages(toMenuItems(mainMenu.PageItems.items));
+      setPortfolios(toMenuItems(mainMenu.PortfolioItems.items));
+    }
+  }, [mainMenu]);
 
   return (
     <>

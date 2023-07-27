@@ -2,9 +2,9 @@ name: Update checks
 
 on:
   push:
-    branches: [ 'main' ]
+    branches: ['main']
   pull_request:
-    branches: [ 'main' ]
+    branches: ['main']
 
 jobs:
   Setup:
@@ -67,7 +67,7 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    needs: [ Lint, Format, Build, Test ]
+    needs: [Lint, Format, Build, Test]
 
     permissions:
       pages: write

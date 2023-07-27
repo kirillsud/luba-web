@@ -2,9 +2,9 @@ name: Update checks
 
 on:
   push:
-    branches: ['main']
+    branches: [ 'main' ]
   pull_request:
-    branches: ['main']
+    branches: [ 'main' ]
 
 jobs:
   Setup:
@@ -48,7 +48,8 @@ jobs:
           fetch-depth: 0
       - uses: ./.github/actions/setup-workspace
       - run: npx nx build
-      - name: Upload artifact
+      - name: Upload pages artifact
+        if: github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v2
         with:
           path: ./dist/luba-web
@@ -67,7 +68,7 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    needs: [Lint, Format, Build, Test]
+    needs: [ Lint, Format, Build, Test ]
 
     permissions:
       pages: write

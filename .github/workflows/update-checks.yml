@@ -1,0 +1,68 @@
+name: Update checks
+
+on:
+  push:
+    branches: [ 'main' ]
+  pull_request:
+    branches: [ 'main' ]
+
+jobs:
+  Setup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: ./.github/actions/setup-workspace
+
+  Lint:
+    runs-on: ubuntu-latest
+    needs: Setup
+
+    steps:
+      - uses: ./.github/actions/setup-workspace
+      - run: npx nx lint
+
+  Format:
+    runs-on: ubuntu-latest
+    needs: Setup
+
+    steps:
+      - uses: ./.github/actions/setup-workspace
+      - run: npx nx format:check
+
+  Build:
+    runs-on: ubuntu-latest
+    needs: Setup
+
+    steps:
+      - uses: ./.github/actions/setup-workspace
+      - run: npx nx build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./dist/luba-web
+
+  Test:
+    runs-on: ubuntu-latest
+    needs: Setup
+
+    steps:
+      - uses: ./.github/actions/setup-workspace
+      - run: npx nx test
+
+  Deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: [ Lint, Format, Build, Test ]
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2

@@ -1,0 +1,15 @@
+name: Setup workspace
+description: Prepares the runner workspace to run the rest of the workflow, including checkout and npm install.
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - uses: nrwl/nx-set-shas@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    - shell: bash
+      run: npm ci

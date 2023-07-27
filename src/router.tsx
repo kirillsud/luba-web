@@ -4,12 +4,16 @@ import loadMainMenu from './app/components/main-menu/main-menu.loader';
 import IndexPage from './app/pages/index-page/index-page';
 import { loadStory, StoryblokPage } from './app/pages/storyblok-page';
 
+export interface RootLoaderData {
+  mainMenu: Awaited<ReturnType<typeof loadMainMenu>>;
+}
+
 export default function createRouter() {
   return createBrowserRouter([
     {
       path: '/',
       element: <Layout />,
-      loader: async () => ({
+      loader: async (): Promise<RootLoaderData> => ({
         mainMenu: await loadMainMenu(),
       }),
       children: [

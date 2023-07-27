@@ -2,13 +2,15 @@ import { render, screen } from '@testing-library/react';
 import MainMenu from './main-menu';
 
 jest.mock('react-router-dom', () => {
+  const rootLoaderData = {
+    mainMenu: {
+      PageItems: { items: [] },
+      PortfolioItems: { items: [] },
+    },
+  };
+
   return {
-    useLoaderData: jest.fn(() => ({
-      mainMenu: {
-        PageItems: { items: [] },
-        PortfolioItems: { items: [] },
-      },
-    })),
+    useLoaderData: () => rootLoaderData,
     Link: () => <div />,
   };
 });

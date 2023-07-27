@@ -1,16 +1,13 @@
-import { gql, useQuery } from '@apollo/client';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import ArrowForwardIos from '@mui/icons-material/ArrowForwardIos';
-import { getStoryblokApi, ISbStoryData } from '@storyblok/react';
+import { ISbStoryData } from '@storyblok/react';
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { Link, useLoaderData } from 'react-router-dom';
 import styles from './main-menu.module.css';
 import logo from '../../../../images/ginko.jpeg';
-import loadMainMenu from './main-menu.loader';
-import { Simulate } from 'react-dom/test-utils';
-import error = Simulate.error;
+import { RootLoaderData } from '../../../router';
 
 export interface MenuItem {
   title: string;
@@ -27,9 +24,7 @@ function toMenuItems(stories: ISbStoryData[]): MenuItem[] {
 }
 
 export function MainMenu() {
-  const { mainMenu } = useLoaderData() as {
-    mainMenu: Awaited<ReturnType<typeof loadMainMenu>>;
-  };
+  const { mainMenu } = useLoaderData() as RootLoaderData;
   const [portfolios, setPortfolios] = useState<MenuItem[]>([]);
   const [pages, setPages] = useState<MenuItem[]>([]);
 

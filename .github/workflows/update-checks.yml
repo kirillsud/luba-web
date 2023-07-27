@@ -11,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: ./.github/actions/setup-workspace
+      - uses: kirillsud/luba-web/.github/actions/setup-workspace@feature/workflow-parallel-jobs
 
   Lint:
     runs-on: ubuntu-latest
     needs: Setup
 
     steps:
-      - uses: ./.github/actions/setup-workspace
+      - uses: kirillsud/luba-web/.github/actions/setup-workspace@feature/workflow-parallel-jobs
       - run: npx nx lint
 
   Format:
@@ -26,7 +26,7 @@ jobs:
     needs: Setup
 
     steps:
-      - uses: ./.github/actions/setup-workspace
+      - uses: kirillsud/luba-web/.github/actions/setup-workspace@feature/workflow-parallel-jobs
       - run: npx nx format:check
 
   Build:
@@ -34,7 +34,7 @@ jobs:
     needs: Setup
 
     steps:
-      - uses: ./.github/actions/setup-workspace
+      - uses: kirillsud/luba-web/.github/actions/setup-workspace@feature/workflow-parallel-jobs
       - run: npx nx build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
@@ -46,7 +46,7 @@ jobs:
     needs: Setup
 
     steps:
-      - uses: ./.github/actions/setup-workspace
+      - uses: kirillsud/luba-web/.github/actions/setup-workspace@feature/workflow-parallel-jobs
       - run: npx nx test
 
   Deploy:

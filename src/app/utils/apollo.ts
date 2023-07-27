@@ -14,7 +14,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
     headers: {
       ...headers,
       token: environment.storyblokAccessToken,
-      version: 'draft',
+      version: environment.production ? 'published' : 'draft',
     },
   }));
   return forward(operation);

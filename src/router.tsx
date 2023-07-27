@@ -9,35 +9,42 @@ export interface RootLoaderData {
 }
 
 export default function createRouter() {
-  return createBrowserRouter([
+  const baseHref = new URL(document.head.baseURI).pathname.replace(/\/$/, '');
+
+  return createBrowserRouter(
+    [
+      {
+        path: '/',
+        element: <Layout />,
+        loader: async (): Promise<RootLoaderData> => ({
+          mainMenu: await loadMainMenu(),
+        }),
+        children: [
+          {
+            index: true,
+            element: <IndexPage />,
+          },
+          {
+            path: 'projects/:slug',
+            element: <StoryblokPage />,
+            loader: async ({ params: { slug } }) => {
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+              return loadStory(`projects/${slug!}`, 'project');
+            },
+          },
+          {
+            path: ':slug',
+            element: <StoryblokPage />,
+            loader: async ({ params: { slug } }) => {
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+              return loadStory(slug!, 'page');
+            },
+          },
+        ],
+      },
+    ],
     {
-      path: '/',
-      element: <Layout />,
-      loader: async (): Promise<RootLoaderData> => ({
-        mainMenu: await loadMainMenu(),
-      }),
-      children: [
-        {
-          index: true,
-          element: <IndexPage />,
-        },
-        {
-          path: 'projects/:slug',
-          element: <StoryblokPage />,
-          loader: async ({ params: { slug } }) => {
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            return loadStory(`projects/${slug!}`, 'project');
-          },
-        },
-        {
-          path: ':slug',
-          element: <StoryblokPage />,
-          loader: async ({ params: { slug } }) => {
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            return loadStory(slug!, 'page');
-          },
-        },
-      ],
-    },
-  ]);
+      basename: baseHref,
+    }
+  );
 }

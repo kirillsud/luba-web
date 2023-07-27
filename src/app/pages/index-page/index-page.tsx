@@ -9,17 +9,17 @@ export interface IndexPageProps {}
 export function IndexPage(props: IndexPageProps) {
   const slides: Slide[] = [
     {
-      imageUrl: '/assets/1635593722082.jpeg',
+      imageUrl: 'assets/1635593722082.jpeg',
       slideUrl: '/portfolio/original-art',
       text: 'Original Art',
     },
     {
-      imageUrl: '/assets/1635593910713.jpeg',
+      imageUrl: 'assets/1635593910713.jpeg',
       slideUrl: '/portfolio/client-work',
       text: 'Client Work',
     },
     {
-      imageUrl: '/assets/1635593867034.jpeg',
+      imageUrl: 'assets/1635593867034.jpeg',
       slideUrl: '/portfolio/rough',
       text: 'Rough',
     },

@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import ProjectPage from './project-page';
+import ContactForm from './contact-form';
 
-describe('ProjectPage', () => {
+describe('ContactForm', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<ProjectPage />);
+    const { baseElement } = render(<ContactForm />);
     expect(baseElement).toBeTruthy();
   });
 });

@@ -1,0 +1,8 @@
+.container {
+  font-size: 2rem;
+  text-align: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: calc(50% - 1rem);
+}

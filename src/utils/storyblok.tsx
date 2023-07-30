@@ -1,0 +1,83 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+// eslint-disable-next-line no-restricted-imports
+import * as Storyblok from '@storyblok/react/rsc';
+import {
+  render as _render,
+  RenderOptions,
+  StoryblokRichtext,
+} from 'storyblok-rich-text-react-renderer';
+import { environment } from '../remove/environments/environment';
+
+function getVersion(draft?: boolean) {
+  if (draft !== undefined) {
+    return draft ? 'draft' : 'published';
+  }
+
+  return environment.production ? 'published' : 'draft';
+}
+
+/**
+ * Loads a Storyblok story by slug and a content type.
+ */
+export async function loadStory<
+  Content extends Storyblok.ISbComponentType<string> & {
+    [index: string]: unknown;
+  }
+>(slug: string, content_type?: string, draft?: boolean) {
+  const storyblokApi = Storyblok.getStoryblokApi();
+  const version = getVersion(draft);
+  const token =
+    version === 'draft'
+      ? environment.storyblokAccessTokenDraft
+      : environment.storyblokAccessToken;
+
+  const { data } = await storyblokApi.getStory(slug, {
+    content_type,
+    token,
+    version,
+  });
+
+  return data.story as Storyblok.ISbStoryData<Content>;
+}
+
+/**
+ * Loads Storyblok stories by a content type.
+ */
+export async function loadStories<
+  Content extends Storyblok.ISbComponentType<string> & {
+    [index: string]: unknown;
+  }
+>(content_type: string) {
+  const storyblokApi = Storyblok.getStoryblokApi();
+  const version = getVersion();
+  const { data } = await storyblokApi.getStories({
+    version,
+    content_type,
+  });
+
+  return data.stories as Storyblok.ISbStoryData<Content>[];
+}
+
+/**
+ * Renders a Storyblok RichText field to HTML markup.
+ * Uses `StoryblokComponent` to render bloks used in the document.
+ */
+export function render(
+  document: StoryblokRichtext | unknown,
+  options?: RenderOptions
+) {
+  return _render(document, {
+    defaultBlokResolver: (name, props) => {
+      const blok = { ...props, component: name };
+      return <Storyblok.StoryblokComponent blok={blok} key={props._uid} />;
+    },
+    ...options,
+  });
+}
+
+// Reexport Storyblok API because of an error in the origin package.
+export const storyblokEditable = Storyblok.storyblokEditable;
+export const StoryblokComponent = Storyblok.StoryblokComponent;
+export const apiPlugin = Storyblok.apiPlugin;
+export const storyblokInit = Storyblok.storyblokInit;

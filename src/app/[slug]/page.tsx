@@ -12,9 +12,10 @@ export default async function Page({
 }: {
   params: { slug: string };
 }) {
-  const story = await loadStory(slug, 'page', draftMode().isEnabled);
+  const draft = draftMode().isEnabled;
+  const story = await loadStory(slug, 'page', draft);
 
-  if (draftMode().isEnabled) {
+  if (draft) {
     return <StoryblokPageClient story={story} />;
   }
 
@@ -27,7 +28,7 @@ export default async function Page({
 }
 
 export async function generateStaticParams() {
-  const stories = await loadStories('page');
+  const stories = await loadStories('page', false);
 
   return stories.map((post) => ({
     slug: post.slug,

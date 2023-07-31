@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import StoryblokBridgeLoader from '@storyblok/react/bridge-loader';
 import { ReactNode } from 'react';
 import MainMenu from '../components/main-menu/main-menu';
 import Page from '../components/storyblok/page/page';
@@ -30,13 +33,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <div className={styles['container']}>
           <div className={styles['menu']}>
-            {/* @ts-expect-error Server Component */}
             <MainMenu />
           </div>
           <div className={styles['page']}>{children}</div>
         </div>
         );
       </body>
+      {/*<StoryblokBridgeLoader options={{}} />*/}
     </html>
   );
 }

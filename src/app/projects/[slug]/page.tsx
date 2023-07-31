@@ -1,4 +1,5 @@
 import { draftMode } from 'next/headers';
+import StoryblokPageClient from '../../../components/storyblok-page-client/storyblok-page-client';
 import {
   loadStories,
   loadStory,
@@ -11,12 +12,12 @@ export default async function Page({
 }: {
   params: { slug: string };
 }) {
-  const story = await loadStory(
-    `projects/${slug}`,
-    'project',
-    draftMode().isEnabled
-  );
-  // const storyState = useStoryblokState(story);
+  const draft = draftMode().isEnabled;
+  const story = await loadStory(`projects/${slug}`, 'project', draft);
+
+  if (draft) {
+    return <StoryblokPageClient story={story} />;
+  }
 
   return (
     <div {...storyblokEditable(story.content)}>
@@ -27,7 +28,7 @@ export default async function Page({
 }
 
 export async function generateStaticParams() {
-  const stories = await loadStories('project');
+  const stories = await loadStories('project', false);
 
   return stories.map((post) => ({
     slug: post.slug,

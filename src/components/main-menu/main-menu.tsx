@@ -15,7 +15,7 @@ export async function MainMenu() {
       <div className={styles['placeholder']}></div>
       <div className={styles['container']}>
         <Link href="/" className={styles['logo']}>
-          <Image src={logoImage} alt="logo luba" />
+          <Image src={logoImage} alt="logo luba" width={150} height={150} />
         </Link>
 
         <ul className={styles['menu']}>

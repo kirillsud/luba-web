@@ -3,37 +3,25 @@
 // eslint-disable-next-line no-restricted-imports
 import {
   ISbStoryData,
-  registerStoryblokBridge,
+  setComponents,
   StoryblokComponent,
   storyblokEditable,
+  useStoryblokState,
 } from '@storyblok/react';
-import { useEffect, useState } from 'react';
-
-/**
- * Loads a story from the router `loader` data and
- * marks it as editable in Storyblok administrator panel.
- */
-export function useStoryblok(originStory: ISbStoryData) {
-  const [story, setStory] = useState<ISbStoryData>(originStory);
-
-  useEffect(() => {
-    if (!originStory.id) {
-      return;
-    }
-
-    setStory(originStory);
-
-    const isBridgeEnable = window?.storyblokRegisterEvent !== undefined;
-    if (isBridgeEnable) {
-      registerStoryblokBridge(originStory.id, (story) => setStory(story), {});
-    }
-  }, [originStory]);
-
-  return story;
-}
+import ContactForm from '../storyblok/contact-form/contact-form';
+import Page from '../storyblok/page/page';
+import Project from '../storyblok/project/project';
+import QuestionAnswer from '../storyblok/question-answer/question-answer';
 
 function StoryblokPageClient({ story }: { story: ISbStoryData }) {
-  const storyState = useStoryblok(story);
+  const storyState = useStoryblokState(story);
+
+  setComponents({
+    page: Page,
+    project: Project,
+    'question-answer': QuestionAnswer,
+    'contact-form': ContactForm,
+  });
 
   if (!storyState) {
     return null;

@@ -1,10 +1,8 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// When building for production, this file is replaced with `environment.prod.ts`.
 import { Environment } from './types';
 
 export const environment: Environment = {
-  production: false,
-  storyblokAccessToken: 'KuTJvICr8NohxzD99lOMtwtt',
+  production: true,
+  storyblokAccessToken: 'HvRpsCtLaOPYvK83FDnvBgtt',
   storyblokAccessTokenDraft: 'KuTJvICr8NohxzD99lOMtwtt',
-  web3formsAccessKey: '',
+  web3formsAccessKey: 'f5e74b13-0491-45a3-8430-80950d557b67',
 };

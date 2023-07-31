@@ -9,24 +9,16 @@ import {
 } from 'storyblok-rich-text-react-renderer';
 import { environment } from '../remove/environments/environment';
 
-function getVersion(draft?: boolean) {
-  if (draft !== undefined) {
-    return draft ? 'draft' : 'published';
-  }
-
-  return environment.production ? 'published' : 'draft';
-}
-
 /**
  * Loads a Storyblok story by slug and a content type.
  */
-export async function loadStory<
-  Content extends Storyblok.ISbComponentType<string> & {
-    [index: string]: unknown;
-  }
->(slug: string, content_type?: string, draft?: boolean) {
+export async function loadStory(
+  slug: string,
+  content_type: string,
+  draft: boolean
+): Promise<Storyblok.ISbStoryData> {
   const storyblokApi = Storyblok.getStoryblokApi();
-  const version = getVersion(draft);
+  const version = draft ? 'draft' : 'published';
   const token =
     version === 'draft'
       ? environment.storyblokAccessTokenDraft
@@ -38,25 +30,30 @@ export async function loadStory<
     version,
   });
 
-  return data.story as Storyblok.ISbStoryData<Content>;
+  return data.story;
 }
 
 /**
  * Loads Storyblok stories by a content type.
  */
-export async function loadStories<
-  Content extends Storyblok.ISbComponentType<string> & {
-    [index: string]: unknown;
-  }
->(content_type: string) {
+export async function loadStories(
+  content_type: string,
+  draft: boolean
+): Promise<Storyblok.ISbStoryData[]> {
   const storyblokApi = Storyblok.getStoryblokApi();
-  const version = getVersion();
+  const version = draft ? 'draft' : 'published';
+  const token =
+    version === 'draft'
+      ? environment.storyblokAccessTokenDraft
+      : environment.storyblokAccessToken;
+
   const { data } = await storyblokApi.getStories({
+    token,
     version,
     content_type,
   });
 
-  return data.stories as Storyblok.ISbStoryData<Content>[];
+  return data.stories;
 }
 
 /**

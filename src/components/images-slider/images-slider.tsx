@@ -2,6 +2,7 @@
 
 import { mdiChevronLeft, mdiChevronRight } from '@mdi/js';
 import Icon from '@mdi/react';
+import Image from 'next/image';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { Seconds } from 'src/utils/units';
 import styles from './images-slider.module.css';
@@ -101,7 +102,7 @@ function renderSlide(slide: Slide | undefined, ...classNames: string[]) {
 
   const slideContent = (
     <>
-      <Image src={slide.imageUrl} alt={slide.text ?? ''} />
+      <Image src={slide.imageUrl} alt={slide.text ?? ''} fill={true} />
       {slide.text ? <span>{slide.text}</span> : null}
     </>
   );

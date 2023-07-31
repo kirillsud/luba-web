@@ -1,9 +1,8 @@
 import { cookies, draftMode } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { client } from '../../../utils/apollo';
 
 const DRAFT_SECRET_TOKEN = 'w5e4GVfRzT';
-
-// http://localhost:4200/api/draft?secret=w5e4GVfRzT&slug=aboutme
 
 function setCookieSameSiteNone(cookieName: string) {
   const cookieStore = cookies();
@@ -32,22 +31,29 @@ export async function GET(request: Request) {
   // }
 
   draftMode().enable();
+  await client.resetStore();
 
   // Workaround for blocked Set-Cookie header in iframe
   // because of SameSite=lax draft cookie
   // https://github.com/vercel/next.js/issues/49927
   setCookieSameSiteNone('__prerender_bypass');
 
-  redirect(`/${slug}`);
+  searchParams.delete('secret');
+  searchParams.delete('slug');
+  const searchString = searchParams.toString();
 
-  // switch (story.content.component) {
-  //   case 'project':
-  //     return redirect(`/projects/${slug}`);
-  //   case 'page':
-  //     return redirect(slug);
-  //   case 'portfolio':
-  //     return redirect(`/portfolio/${slug}`);
-  //   default:
-  //     return new Response('Invalid component', { status: 401 });
-  // }
+  const slugParts = slug.split('/');
+  const component =
+    slugParts.length > 2 ? slugParts[0].replace(/s#/, '') : 'page';
+
+  switch (component) {
+    case 'page':
+      return redirect(`/${slug}?${searchString}`);
+    case 'project':
+      return redirect(`/projects/${slug}?${searchString}`);
+    case 'portfolio':
+      return redirect(`/portfolio/${slug}?${searchString}`);
+    default:
+      return new Response('Invalid component', { status: 401 });
+  }
 }

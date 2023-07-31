@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { ProjectStoryblok } from '../../../utils/components.storyblok';
 import { render, storyblokEditable } from '../../../utils/storyblok';
 import styles from './project.module.css';
@@ -14,10 +13,12 @@ export function Project({ blok }: ProjectProps) {
       : true
     : false;
 
+  console.log(blok.image);
+
   return (
     <div className={styles.page} {...storyblokEditable(blok)}>
       <figure>
-        <Image src={blok.image.filename} alt={blok.image.alt ?? ''} />
+        <img src={blok.image.filename} alt={blok.image.alt ?? ''} />
         <figcaption>{blok.year}</figcaption>
       </figure>
       {notEmptyDescription && (

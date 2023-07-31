@@ -24,7 +24,8 @@
       "options": {
         "buildTarget": "luba-web:build",
         "dev": true,
-        "ssl": true
+        "ssl": true,
+        "port": 4210
       },
       "configurations": {
         "development": {
@@ -34,7 +35,7 @@
         "production": {
           "buildTarget": "luba-web:build:production",
           "dev": false,
-          "basePath": "/luba-web"
+          "//basePath": "/luba-web"
         }
       }
     },

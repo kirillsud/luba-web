@@ -34,7 +34,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'portfolio/:slug',
-        element: <PortfolioPage portfolio={galleryImages} title='PORTFOLIO' />
+        element: <PortfolioPage portfolio={galleryImages} title="PORTFOLIO" />,
       },
       {
         path: 'projects/:slug',

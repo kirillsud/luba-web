@@ -13,8 +13,6 @@ export function Project({ blok }: ProjectProps) {
       : true
     : false;
 
-  console.log(blok.image);
-
   return (
     <div className={styles.page} {...storyblokEditable(blok)}>
       <figure>

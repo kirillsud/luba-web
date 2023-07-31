@@ -27,7 +27,7 @@ export const metadata = {
   description: '',
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({ children }: { children?: ReactNode }) {
   return (
     <html lang="en">
       <body>
@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </div>
         );
       </body>
-      {/*<StoryblokBridgeLoader options={{}} />*/}
+      <StoryblokBridgeLoader options={{}} />
     </html>
   );
 }

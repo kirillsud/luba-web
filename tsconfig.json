@@ -14,14 +14,29 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {},
-    "jsx": "react-jsx",
-    "allowJs": false,
-    "esModuleInterop": false,
+    "jsx": "preserve",
+    "allowJs": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "types": ["jest", "node"]
   },
   "files": [],
-  "include": [],
+  "include": [
+    ".next/types/**/*.ts",
+    "dist/luba-web/.next/types/**/*.ts",
+    "next-env.d.ts"
+  ],
   "references": [
     {
       "path": "./tsconfig.app.json"

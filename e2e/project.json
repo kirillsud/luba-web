@@ -14,9 +14,6 @@
       "configurations": {
         "production": {
           "devServerTarget": "luba-web:serve:production"
-        },
-        "ci": {
-          "devServerTarget": "luba-web:serve-static"
         }
       }
     },

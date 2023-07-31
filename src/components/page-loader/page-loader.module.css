@@ -1,0 +1,36 @@
+.loader {
+  --loader-height: 2px;
+  --loader-width: 200px;
+
+  width: 100%;
+  height: var(--loader-height);
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: calc(-1 * var(--loader-width));
+  overflow: hidden;
+}
+
+.loader::after {
+  content: '';
+  width: var(--loader-width);
+  height: var(--loader-height);
+  background: var(--text-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  animation: hitZak 1.5s linear infinite alternate;
+  animation-delay: 0.5s;
+}
+
+@keyframes hitZak {
+  0% {
+    left: 0;
+    transform: translateX(-1%);
+  }
+  100% {
+    left: 100%;
+    transform: translateX(-99%);
+  }
+}

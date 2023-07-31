@@ -1,9 +1,17 @@
 {
-  "extends": ["plugin:@nx/react"],
-  "root": true,
-  "ignorePatterns": ["!**/*"],
-  "plugins": ["@nx"],
+  "extends": ["plugin:@nx/react-typescript", "next", "next/core-web-vitals"],
+  "ignorePatterns": ["!**/*", ".next/**/*"],
   "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@next/next/no-html-link-for-pages": ["error", "src/pages"],
+        "no-restricted-imports": [
+          "error",
+          { "paths": ["@storyblok/react", "@storyblok/react/rsc"] }
+        ]
+      }
+    },
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nx/typescript"],
@@ -13,13 +21,12 @@
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nx/javascript"],
       "rules": {}
-    },
-    {
-      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
-      "env": {
-        "jest": true
-      },
-      "rules": {}
     }
-  ]
+  ],
+  "rules": {
+    "@next/next/no-html-link-for-pages": "off"
+  },
+  "env": {
+    "jest": true
+  }
 }

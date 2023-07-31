@@ -48,7 +48,7 @@ export function MainMenu() {
 
   return (
     <>
-      {/* <div className={styles['placeholder']}></div> */}
+      <div className={styles['placeholder']}></div>
       <div className={styles['container']}>
         <Link to="/" className={styles['logo']}>
           <img src={logo} alt="logo luba" />

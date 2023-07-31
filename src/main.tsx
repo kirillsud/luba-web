@@ -10,7 +10,7 @@ import Layout from './app/components/layout/layout';
 import QuestionAnswer from './app/components/storyblok/question-answer/question-answer';
 import Page from './app/components/storyblok/page/page';
 import Project from './app/components/storyblok/project/project';
-import { galleryImages } from './assets/constants';
+import { galleryImages } from './app/utils/constants';
 import PortfolioPage from './app/pages/portfolio-page/portfolio-page';
 
 storyblokInit({

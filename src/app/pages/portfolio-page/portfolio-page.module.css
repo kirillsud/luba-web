@@ -1,11 +1,9 @@
 .portfolio_page {
-    width: calc(100% - 200px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 10px 0 15px;
-    margin-left: 200px;
   }
   
   h1 {
@@ -21,14 +19,7 @@
   }
   
   .img {
-    /* opacity: 0; */
-    /* transition: transform 0.4s, opacity 0.4s;
-    z-index: -1;
-    position: relative;
-    height: auto;
-    display: block; */
     width: 100%;
- 
   }
   
   .container .img:hover {

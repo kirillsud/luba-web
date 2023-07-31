@@ -1,0 +1,17 @@
+.form {
+  max-width: 20rem;
+}
+
+.form fieldset {
+  display: flex;
+  border: none;
+}
+
+.form fieldset > label {
+  width: 5rem;
+}
+
+.form fieldset > input,
+.form fieldset > textarea {
+  flex-grow: 1;
+}

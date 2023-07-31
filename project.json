@@ -5,79 +5,56 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nx/webpack:webpack",
+      "executor": "@nx/next:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "compiler": "babel",
-        "outputPath": "dist/luba-web",
-        "index": "src/index.html",
-        "baseHref": "/",
-        "main": "src/main.tsx",
-        "tsConfig": "tsconfig.app.json",
-        "assets": ["src/favicon.ico", "src/assets"],
-        "styles": ["src/styles.css"],
-        "scripts": [],
-        "isolatedConfig": true,
-        "webpackConfig": "webpack.config.js"
+        "outputPath": "dist/luba-web"
       },
       "configurations": {
         "development": {
-          "extractLicenses": false,
-          "optimization": false,
-          "sourceMap": true,
-          "vendorChunk": true
+          "outputPath": "."
         },
-        "production": {
-          "fileReplacements": [
-            {
-              "replace": "src/environments/environment.ts",
-              "with": "src/environments/environment.prod.ts"
-            }
-          ],
-          "optimization": true,
-          "outputHashing": "all",
-          "sourceMap": false,
-          "namedChunks": false,
-          "extractLicenses": true,
-          "vendorChunk": false
-        }
+        "production": {}
       }
     },
     "serve": {
-      "executor": "@nx/webpack:dev-server",
+      "executor": "@nx/next:server",
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "luba-web:build",
-        "hmr": true,
-        "ssl": true
+        "dev": true,
+        "ssl": true,
+        "port": 4210
       },
       "configurations": {
         "development": {
-          "buildTarget": "luba-web:build:development"
+          "buildTarget": "luba-web:build:development",
+          "dev": true
         },
         "production": {
           "buildTarget": "luba-web:build:production",
-          "hmr": false
+          "dev": false,
+          "//basePath": "/luba-web"
         }
+      }
+    },
+    "export": {
+      "executor": "@nx/next:export",
+      "options": {
+        "buildTarget": "luba-web:build:production"
       }
     },
     "lint": {
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["./src/**/*.{ts,tsx,js,jsx}"]
-      }
-    },
-    "serve-static": {
-      "executor": "@nx/web:file-server",
-      "options": {
-        "buildTarget": "luba-web:build"
+        "lintFilePatterns": ["src/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectName}"],
+      "outputs": ["{workspaceRoot}/coverage"],
       "options": {
         "jestConfig": "jest.config.ts",
         "passWithNoTests": true

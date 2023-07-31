@@ -6,7 +6,7 @@
 
 ## Start the app
 
-To start the development server run `nx serve luba-web` (run `npx nx serve luba-web` in case nx is not installed globally). Open your browser and navigate to http://localhost:4200/. Happy coding!
+To start the development server run `npm strat`. Open your browser and navigate to https://localhost:4200/. Happy coding!
 
 ## Generate code
 

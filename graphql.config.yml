@@ -1,0 +1,2 @@
+schema: https://gapi.storyblok.com/v1/api
+documents: '**/*.graphql'

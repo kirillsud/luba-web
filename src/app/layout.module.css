@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+}
+
+.page {
+  flex-grow: 1;
+  padding: var(--page-padding);
+  position: relative;
+}

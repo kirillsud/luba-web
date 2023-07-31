@@ -1,0 +1,12 @@
+name: Setup workspace
+description: Prepares the runner workspace including nodejs setup and npm install.
+runs:
+  using: 'composite'
+  steps:
+    - uses: nrwl/nx-set-shas@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    - shell: bash
+      run: npm ci

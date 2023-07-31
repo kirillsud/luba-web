@@ -1,5 +1,11 @@
 import { StoryblokStory } from 'storyblok-generate-ts';
 
+export interface ContactFormStoryblok {
+  _uid: string;
+  component: 'contact-form';
+  [k: string]: any;
+}
+
 export interface RichtextStoryblok {
   type: string;
   content?: RichtextStoryblok[];
@@ -10,7 +16,6 @@ export interface RichtextStoryblok {
 }
 
 export interface PageStoryblok {
-  order: string;
   body?: RichtextStoryblok;
   _uid: string;
   component: 'page';
@@ -19,7 +24,6 @@ export interface PageStoryblok {
 }
 
 export interface PortfolioStoryblok {
-  order: string;
   projects?: (StoryblokStory<ProjectStoryblok> | string)[];
   _uid: string;
   component: 'portfolio';

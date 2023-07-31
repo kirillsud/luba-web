@@ -5,9 +5,8 @@
   "scripts": {
     "start": "nx serve & local-ssl-proxy --source 4200 --target 4210",
     "build": "nx build",
-    "build:vercel": "nx build --configuration=vercel",
     "test": "nx test",
-    "storyblok:update-types": "storyblok pull-components --space=241820 -p src/utils/ -f storyblok && storyblok-generate-ts source=./src/app/utils/components.storyblok.json target=./src/app/utils/components.storyblok && nx format:write"
+    "storyblok:update-types": "storyblok pull-components --space=241820 -p src/utils/ -f storyblok && storyblok-generate-ts source=./src/utils/components.storyblok.json target=./src/utils/components.storyblok && nx format:write"
   },
   "private": true,
   "dependencies": {

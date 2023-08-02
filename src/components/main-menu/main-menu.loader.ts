@@ -24,21 +24,15 @@ interface MainMenuResponse {
 
 const query = gql`
   query {
-    PageItems(sort_by: "content.order:asc") {
+    PageItems(sort_by: "position:asc") {
       items {
         slug
-        content {
-          order
-        }
         name
       }
     }
-    PortfolioItems(sort_by: "content.order:asc") {
+    PortfolioItems(sort_by: "position:asc") {
       items {
         slug
-        content {
-          order
-        }
         name
       }
     }
@@ -46,12 +40,10 @@ const query = gql`
 `;
 
 function toMenuItems(stories: ISbStoryData[]): MenuItem[] {
-  return [...stories]
-    .sort((a, b) => a.content.order - b.content.order)
-    .map((x) => ({
-      title: x.name,
-      slug: x.slug,
-    }));
+  return [...stories].map((x) => ({
+    title: x.name,
+    slug: x.slug,
+  }));
 }
 
 export async function loadMainMenu() {

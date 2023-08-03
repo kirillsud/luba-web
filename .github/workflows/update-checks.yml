@@ -5,12 +5,27 @@ on:
     branches: ['main']
   pull_request:
     branches: ['main']
+  workflow_dispatch:
+    inputs:
+      readme_branch:
+        type: choice
+        required: false
+        options:
+          - v2-api-test
+          - v2.0
+        default: v2-api-test
+        description: Readme branch to deploy to
+
 
 jobs:
   Setup:
     runs-on: ubuntu-latest
+    env:
+      readme-env: ${{ inputs.readme_branch || 'v2-api-test' }}
+      include-drafts: ${{ inputs.readme_branch == 'v2-api-test' && 'true' || 'false' }}
 
     steps:
+      - run: echo "$readme-env, $include-drafts"
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0

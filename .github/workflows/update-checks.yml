@@ -21,11 +21,11 @@ jobs:
   Setup:
     runs-on: ubuntu-latest
     env:
-      readme-env: ${{ inputs.readme_branch || 'v2-api-test' }}
-      include-drafts: ${{ inputs.readme_branch == 'v2-api-test' && 'true' || 'false' }}
+      readme_env: ${{ inputs.readme_branch || 'v2-api-test' }}
+      include_drafts: ${{ inputs.readme_branch == 'v2-api-test' && 'true' || 'false' }}
 
     steps:
-      - run: echo "${readme-env}, ${include-drafts}"
+      - run: echo "$readme_env, $include_drafts"
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0

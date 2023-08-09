@@ -63,7 +63,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/setup-workspace
-      - run: npx nx test
+      - run: npx nx test --coverage
       - name: Coverage Report as Comment (Clover)
         uses: lucassabreu/comment-coverage-clover@main
         with:

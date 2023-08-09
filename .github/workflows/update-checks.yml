@@ -65,7 +65,7 @@ jobs:
       - uses: ./.github/actions/setup-workspace
       - run: npx nx test
       - name: Coverage Report as Comment (Clover)
-        uses: lucassabreu/comment-coverage-clover@0
+        uses: lucassabreu/comment-coverage-clover@main
         with:
           file: coverage/luba-web/clover.xml
 

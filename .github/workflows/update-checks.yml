@@ -64,6 +64,10 @@ jobs:
           fetch-depth: 0
       - uses: ./.github/actions/setup-workspace
       - run: npx nx test
+      - name: Coverage Report as Comment (Clover)
+        uses: lucassabreu/comment-coverage-clover@0.10
+        with:
+          file: coverage/luba-web/clover.xml
 
   Deploy:
     runs-on: ubuntu-latest

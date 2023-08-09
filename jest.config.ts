@@ -8,6 +8,7 @@ export default {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: './coverage/luba-web',
+  coverageReporters: ['clover'],
   //  testMatch: [
   //    '<rootDir>/src/**/__tests__/**/*.[jt]s?(x)',
   //    '<rootDir>/src/**/*(*.)@(spec|test).[jt]s?(x)',

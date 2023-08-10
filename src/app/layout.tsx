@@ -37,7 +37,6 @@ export default function RootLayout({ children }: { children?: ReactNode }) {
           </div>
           <div className={styles['page']}>{children}</div>
         </div>
-        );
       </body>
       <StoryblokBridgeLoader options={{}} />
     </html>

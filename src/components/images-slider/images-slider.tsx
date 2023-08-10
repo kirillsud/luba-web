@@ -5,14 +5,9 @@ import Icon from '@mdi/react';
 import Image from 'next/image';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { Seconds } from 'src/utils/units';
+import { Slide } from './image-slider.loader';
 import styles from './images-slider.module.css';
 import Timer from './timer/timer';
-
-export interface Slide {
-  imageUrl: string;
-  slideUrl?: string;
-  text?: string;
-}
 
 export interface ImagesSliderProps {
   slides: Slide[];

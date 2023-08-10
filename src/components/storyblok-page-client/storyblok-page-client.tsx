@@ -10,6 +10,7 @@ import {
 } from '@storyblok/react';
 import ContactForm from '../storyblok/contact-form/contact-form';
 import Page from '../storyblok/page/page';
+import Portfolio from '../storyblok/portfolio/portfolio';
 import Project from '../storyblok/project/project';
 import QuestionAnswer from '../storyblok/question-answer/question-answer';
 
@@ -19,6 +20,7 @@ function StoryblokPageClient({ story }: { story: ISbStoryData }) {
   setComponents({
     page: Page,
     project: Project,
+    portfolio: Portfolio,
     'question-answer': QuestionAnswer,
     'contact-form': ContactForm,
   });

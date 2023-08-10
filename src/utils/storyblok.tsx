@@ -28,6 +28,7 @@ export async function loadStory(
     content_type,
     token,
     version,
+    resolve_relations: 'portfolio.projects',
   });
 
   return data.story;

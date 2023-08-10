@@ -1,0 +1,39 @@
+.container {
+  column-count: 3;
+}
+
+.project {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.projectName {
+  z-index: 1;
+  position: absolute;
+  bottom: -1.5rem;
+  opacity: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--primary-color);
+  text-align: center;
+  padding: 1rem;
+  font: 1.5rem 'Roboto', sans-serif;
+}
+
+.project img {
+  display: block;
+  width: 100%;
+}
+
+.project:hover img {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+
+.project:hover .projectName {
+  opacity: 0.8;
+  transform: translateY(-1.5rem);
+  transition: transform 0.3s, opacity 0.3s;
+}

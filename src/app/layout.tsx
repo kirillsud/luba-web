@@ -4,6 +4,7 @@ import StoryblokBridgeLoader from '@storyblok/react/bridge-loader';
 import { ReactNode } from 'react';
 import MainMenu from '../components/main-menu/main-menu';
 import Page from '../components/storyblok/page/page';
+import Portfolio from '../components/storyblok/portfolio/portfolio';
 import Project from '../components/storyblok/project/project';
 import QuestionAnswer from '../components/storyblok/question-answer/question-answer';
 import { environment } from '../remove/environments/environment';
@@ -17,6 +18,7 @@ storyblokInit({
   components: {
     page: Page,
     project: Project,
+    portfolio: Portfolio,
     'question-answer': QuestionAnswer,
     // 'contact-form': ContactForm,
   },

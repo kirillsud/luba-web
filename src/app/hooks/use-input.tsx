@@ -4,19 +4,30 @@ const useInput = (validateValue: Function) => {
   // states for input
   const [enteredValue, setEnteredValue] = useState('');
   const [isTouched, setIsTouched] = useState(false);
+  // custom
+  const [validityObjisValid, setValidityObjIsValid] = useState(false);
 
   // input validation
   const valueIsValid = validateValue(enteredValue);
-  const hasError = !valueIsValid && isTouched;
+  //const hasError = !valueIsValid && isTouched;
+  // custom
+  console.log('validityObjisValid: ' + validityObjisValid);
+  const hasError = !validityObjisValid && isTouched;
+  console.log('hasError: ' + hasError);
 
+
+  // validation
+  //let validity = {};
+  //console.log(validity);
   // validation on every keystroke
-  // name input
   const valueChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setEnteredValue(event.target.value);
+    // custom
+    setValidityObjIsValid(event.target.validity.valid);
+    console.log(event.target.validity.valid);
   };
 
   // validation onBlur (unfocus)
-  // name input
   const inputBlurHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setIsTouched(true);
   };
@@ -25,6 +36,7 @@ const useInput = (validateValue: Function) => {
   const reset = () => {
     setEnteredValue('');
     setIsTouched(false);
+    setValidityObjIsValid(false);
   }
 
   return {
@@ -33,7 +45,7 @@ const useInput = (validateValue: Function) => {
     hasError: hasError,
     valueChangeHandler,
     inputBlurHandler,
-    reset
+    reset,
   };
 };
 

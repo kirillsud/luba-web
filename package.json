@@ -54,7 +54,7 @@
     "nx": "16.5.5",
     "nx-cloud": "latest",
     "prettier": "^2.6.2",
-    "storyblok": "3.25.0",
+    "storyblok": "3.25.2",
     "storyblok-generate-ts": "^1.15.0",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",

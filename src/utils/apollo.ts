@@ -6,22 +6,20 @@ import {
   InMemoryCache,
 } from '@apollo/client';
 import { draftMode } from 'next/headers';
-import { environment } from '../remove/environments/environment';
+import { environment } from './environment';
 
 const httpLink = new HttpLink({ uri: 'https://gapi.storyblok.com/v1/api' });
 
 const authMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext(({ headers = {} }) => {
+    const draft = draftMode().isEnabled || !environment.production;
     return {
       headers: {
         ...headers,
-        token: draftMode().isEnabled
+        token: draft
           ? environment.storyblokAccessTokenDraft
-          : environment.storyblokAccessToken,
-        version:
-          draftMode().isEnabled || !environment.production
-            ? 'draft'
-            : 'published',
+          : environment.storyblokAccessTokenPublished,
+        version: draft ? 'draft' : 'published',
       },
     };
   });

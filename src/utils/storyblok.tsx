@@ -7,7 +7,7 @@ import {
   RenderOptions,
   StoryblokRichtext,
 } from 'storyblok-rich-text-react-renderer';
-import { environment } from '../remove/environments/environment';
+import { environment } from './environment';
 
 /**
  * Loads a Storyblok story by slug and a content type.
@@ -19,10 +19,9 @@ export async function loadStory(
 ): Promise<Storyblok.ISbStoryData> {
   const storyblokApi = Storyblok.getStoryblokApi();
   const version = draft ? 'draft' : 'published';
-  const token =
-    version === 'draft'
-      ? environment.storyblokAccessTokenDraft
-      : environment.storyblokAccessToken;
+  const token = draft
+    ? environment.storyblokAccessTokenDraft
+    : environment.storyblokAccessTokenPublished;
 
   const { data } = await storyblokApi.getStory(slug, {
     content_type,
@@ -46,7 +45,7 @@ export async function loadStories(
   const token =
     version === 'draft'
       ? environment.storyblokAccessTokenDraft
-      : environment.storyblokAccessToken;
+      : environment.storyblokAccessTokenPublished;
 
   const { data } = await storyblokApi.getStories({
     token,

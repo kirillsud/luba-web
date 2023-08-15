@@ -7,13 +7,13 @@ import Page from '../components/storyblok/page/page';
 import Portfolio from '../components/storyblok/portfolio/portfolio';
 import Project from '../components/storyblok/project/project';
 import QuestionAnswer from '../components/storyblok/question-answer/question-answer';
-import { environment } from '../remove/environments/environment';
 import '../styles.css';
+import { environment } from '../utils/environment';
 import { apiPlugin, storyblokInit } from '../utils/storyblok';
 import styles from './layout.module.css';
 
 storyblokInit({
-  accessToken: environment.storyblokAccessToken,
+  accessToken: environment.storyblokAccessTokenPublished,
   use: [apiPlugin],
   components: {
     page: Page,

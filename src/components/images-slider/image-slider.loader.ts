@@ -34,7 +34,7 @@ function isProject(project: any): project is ISbStoryData<ProjectStoryblok> {
 }
 
 export async function loadSlides() {
-  const response = await client.query({ query: query });
+  const response = await client.query({ query });
 
   if (response.error) {
     throw response.error;
@@ -42,14 +42,13 @@ export async function loadSlides() {
 
   const slides: Slide[] = response.data.PortfolioItems.items.map(
     (item: ISbStoryData<PortfolioStoryblok>) => {
-      console.log(item);
       const projects = item.content.projects?.filter(
         isProject
       ) as ISbStoryData<ProjectStoryblok>[];
 
       return {
         text: item.name,
-        slideUrl: item.slug,
+        slideUrl: `/portfolio/${item.slug}`,
         imageUrl: projects[0]?.content?.image.filename,
       };
     }

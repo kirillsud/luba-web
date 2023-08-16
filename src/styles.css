@@ -1,20 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Alice&family=Cantarell&display=swap');
+
 :root {
-  --text-color: #21380a;
-  --link-color: #467714;
-  --link-color-hover: #55a103;
-  --primary-color: #ffd3a0;
-  --primary-color-hover: #ffc27e;
+  --primary-color: #467714;
+  --primary-color-hover: #55a103;
+
+  --text-color: inherit;
+  --link-color: inherit;
+  --link-color-hover: var(--primary-color);
+  --background-color: #f8eee1;
+  --overlay-color: white;
+
   --page-padding: 2rem;
 }
 
 body {
   margin: 0;
+  font-family: 'Cantarell', sans-serif;
+  font-weight: 200;
+}
+
+header,
+footer {
+  background-color: var(--overlay-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Cantarell', sans-serif;
+  font-weight: 300;
 }
 
 a {
   color: var(--link-color);
+  text-decoration: none;
 }
 
 a:hover {
   color: var(--link-color-hover);
+  text-decoration: underline;
+}
+
+hr {
+  border-color: var(--primary-color);
+  border-bottom: none;
+  width: 30rem;
+  max-width: 50vw;
+  margin: 1rem auto;
+}
+
+main > h2 {
+  font-family: 'Alice', sans-serif;
+  font-size: 3rem;
+  text-align: center;
 }

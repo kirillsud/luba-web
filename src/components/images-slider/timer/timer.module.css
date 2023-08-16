@@ -1,13 +1,14 @@
 .container {
   --duration: 1; /* default duration in seconds */
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  background-color: var(--text-background);
+  height: 2px;
+  background-color: var(--primary-color);
   transform-origin: right center;
   transform: scaleX(1);
+  opacity: 0.7;
 }
 
 .play {

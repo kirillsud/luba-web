@@ -26,13 +26,17 @@ export function Portfolio({ blok }: PortfolioProps) {
           href={`/projects/${project.slug}`}
           key={project.id}
         >
-          <div className={styles.projectName}>{project.name}</div>
+          <div className={styles.body}>
+            <div className={styles.image}>
+              <img
+                src={project.content.image.filename}
+                alt={project.content.image.alt}
+                loading="lazy"
+              />
+            </div>
 
-          <img
-            src={project.content.image.filename}
-            alt={project.content.image.alt}
-            loading="lazy"
-          />
+            <div className={styles.name}>{project.name}</div>
+          </div>
         </Link>
       ))}
     </div>

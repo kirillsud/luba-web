@@ -1,5 +1,7 @@
+'use client';
+
 import { FormEvent, useCallback } from 'react';
-import { environment } from '../../../remove/environments/environment';
+import { environment } from '../../../utils/environment';
 import styles from './contact-form.module.css';
 
 /* eslint-disable-next-line */

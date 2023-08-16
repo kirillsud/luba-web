@@ -1,9 +1,33 @@
 .container {
   display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
-.page {
+.container main {
   flex-grow: 1;
-  padding: var(--page-padding);
-  position: relative;
+  padding: 0 var(--page-padding);
+  text-align: center;
+  background-color: var(--background-color);
+}
+
+.container main article {
+  width: calc(100% - var(--page-padding) * 2);
+  max-width: 1000px;
+  margin: 2rem auto;
+}
+
+.container main > h2 {
+  margin: 0 calc(-1 * var(--page-padding));
+  padding: 2rem var(--page-padding);
+  background-color: var(--overlay-color);
+}
+
+.container header h1 {
+  font-size: 1rem;
+  text-align: center;
+}
+
+.container footer {
+  padding: 1rem;
 }

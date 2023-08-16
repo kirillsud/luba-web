@@ -1,6 +1,6 @@
-import createPage from '../../utils/storyblok-page';
+import createPage from '../../components/storyblok-page/storyblok-page';
 
-const { Page, generateStaticParams } = createPage('page');
+const { Page, generateStaticParams, generateMetadata } = createPage('page');
 
-export { generateStaticParams };
+export { generateStaticParams, generateMetadata };
 export default Page;

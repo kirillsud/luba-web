@@ -20,6 +20,6 @@ jest.mock('next/image', () => () => <div />);
 describe('MainMenu', () => {
   it('should render successfully', async () => {
     render(await MainMenu());
-    expect(await screen.findByText('Portfolio')).toBeTruthy();
+    expect(await screen.findByText('Home')).toBeTruthy();
   });
 });

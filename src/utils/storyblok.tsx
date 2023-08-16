@@ -28,6 +28,7 @@ export async function loadStory(
     token,
     version,
     resolve_relations: 'portfolio.projects',
+    resolve_links: 'story',
   });
 
   return data.story;
@@ -47,11 +48,15 @@ export async function loadStories(
       ? environment.storyblokAccessTokenDraft
       : environment.storyblokAccessTokenPublished;
 
-  const { data } = await storyblokApi.getStories({
+  const response = await storyblokApi.getStories({
     token,
     version,
     content_type,
+    // Manually set cache version to force reload because of a bug in Storyblok API.
+    cv: '1',
   });
+
+  const data = response.data;
 
   return data.stories;
 }

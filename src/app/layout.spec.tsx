@@ -7,8 +7,8 @@ jest.mock('../components/main-menu/main-menu', () => () => {
 });
 
 describe('Layout', () => {
-  it('should render successfully', () => {
-    const { baseElement } = render(<Layout />);
+  it('should render successfully', async () => {
+    const { baseElement } = render(await Layout({}));
     expect(baseElement).toBeTruthy();
   });
 });

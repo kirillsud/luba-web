@@ -1,3 +1,5 @@
+'use client';
+
 import { FormEvent, useCallback } from 'react';
 import { environment } from '../../../utils/environment';
 import styles from './contact-form.module.css';

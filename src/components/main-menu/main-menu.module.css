@@ -1,92 +1,16 @@
-.placeholder {
-  width: 200px;
-  height: 100vh;
-}
-
-.container {
-  --menu-color: #ffe4c4;
-  --drop-color: #ffd3a0;
-  --menu-color-hover: #ffc27e;
-
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  background-color: var(--menu-color);
-  z-index: 100;
-}
-
-.logo {
-  margin: 25px auto;
-}
-
-.logo img {
-  border-radius: 350px;
-  height: 150px;
-  width: 150px;
-}
-
 .menu {
   list-style-type: none;
-  flex-grow: 1;
+  display: flex;
+  justify-content: center;
   margin: 0;
   padding: 0;
 }
 
-.menu > li {
-  position: relative;
+.menu li:not(:last-child) {
+  padding-right: 1rem;
 }
 
-.menu_item {
-  font-family: 'Roboto', sans-serif;
-  padding: 0.7rem 2rem;
-  color: var(--text-color);
-  text-decoration: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 1.2rem;
-  text-transform: uppercase;
-}
-
-.menu_item:not(a) {
-  cursor: default;
-}
-
-.menu_item:hover {
-  color: var(--link-color-hover);
-  background-color: var(--menu-color-hover);
-}
-
-.drop {
-  display: none;
-  position: absolute;
-  background-color: var(--drop-color);
-  top: 0;
-  left: calc(100% - 1rem);
-  width: 13rem;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-
-.menu_item:hover .drop {
-  display: block;
-}
-
-.contacts {
-  margin: auto;
-  padding: 0;
-  display: flex;
-  list-style-type: none;
-}
-
-.contacts a {
-  color: var(--text-color);
-  margin: 0.3rem;
-}
-
-.contacts a:hover {
-  color: var(--link-color-hover);
+.menu li:not(:last-child):after {
+  padding-left: 1rem;
+  content: '·';
 }

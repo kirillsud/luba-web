@@ -30,10 +30,12 @@ function StoryblokPageClient({ story }: { story: ISbStoryData }) {
   }
 
   return (
-    <div {...storyblokEditable(storyState.content)}>
-      <h1>{storyState.name}</h1>
-      <StoryblokComponent blok={storyState.content} />
-    </div>
+    <>
+      <h2>{storyState.name}</h2>
+      <article {...storyblokEditable(storyState.content)}>
+        <StoryblokComponent blok={storyState.content} />
+      </article>
+    </>
   );
 }
 

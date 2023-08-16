@@ -1,9 +1,11 @@
 .container {
-  --text-background: rgba(255, 255, 255, 0.7);
+  --button-color: #fff;
+  --button-color-hover: var(--primary-color);
+  --text-background: transparent;
 
   display: block;
   position: relative;
-  height: 100vh;
+  height: 100%;
 }
 
 .slide {
@@ -41,11 +43,10 @@
 
 .slide span {
   position: absolute;
-  bottom: 0;
+  bottom: -2rem;
   left: 50%;
-  transform: translate(-50%, -100%);
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.5rem;
+  transform: translate(-50%, 0);
+  font-size: 1rem;
   font-weight: lighter;
   color: var(--text-color);
   background-color: var(--text-background);
@@ -71,13 +72,13 @@
   border: none;
   outline: none;
   cursor: pointer;
-  color: var(--text-color);
-  padding: 0.5rem;
+  color: var(--button-color);
+  padding: 0;
   background-color: var(--text-background);
 }
 
 .controls button:hover {
-  color: var(--link-color-hover);
+  color: var(--button-color-hover);
 }
 
 .controls button:disabled {

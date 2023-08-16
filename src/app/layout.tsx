@@ -1,45 +1,66 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import StoryblokBridgeLoader from '@storyblok/react/bridge-loader';
+import Link from 'next/link';
 import { ReactNode } from 'react';
 import MainMenu from '../components/main-menu/main-menu';
+import ContactForm from '../components/storyblok/contact-form/contact-form';
 import Page from '../components/storyblok/page/page';
 import Portfolio from '../components/storyblok/portfolio/portfolio';
 import Project from '../components/storyblok/project/project';
 import QuestionAnswer from '../components/storyblok/question-answer/question-answer';
 import '../styles.css';
 import { environment } from '../utils/environment';
+import { metadataTitle } from '../utils/metadata';
 import { apiPlugin, storyblokInit } from '../utils/storyblok';
 import styles from './layout.module.css';
 
 storyblokInit({
-  accessToken: environment.storyblokAccessTokenPublished,
+  accessToken: environment.production
+    ? environment.storyblokAccessTokenPublished
+    : environment.storyblokAccessTokenDraft,
   use: [apiPlugin],
   components: {
     page: Page,
     project: Project,
     portfolio: Portfolio,
     'question-answer': QuestionAnswer,
-    // 'contact-form': ContactForm,
+    'contact-form': ContactForm,
   },
 });
 
 export const metadata = {
-  title: 'Welcome to Luba art!',
+  title: metadataTitle(),
   description: '',
 };
 
-export default function RootLayout({ children }: { children?: ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children?: ReactNode;
+}) {
   return (
     <html lang="en">
-      <body>
-        <div className={styles['container']}>
-          <div className={styles['menu']}>
-            <MainMenu />
-          </div>
-          <div className={styles['page']}>{children}</div>
-        </div>
+      <head>
+        <meta name="viewport" content="width=device-width" />
+        <meta charSet="utf-8" />
+        <link rel="icon" href="/favicon.ico" />
+      </head>
+
+      <body className={styles['container']}>
+        <header>
+          <h1>
+            <Link href="/">Portfolio Lubov Frolova</Link>
+          </h1>
+        </header>
+
+        <main className={styles['page']}>{children}</main>
+
+        <footer>
+          <MainMenu />
+        </footer>
       </body>
+
       <StoryblokBridgeLoader options={{}} />
     </html>
   );

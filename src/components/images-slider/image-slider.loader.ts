@@ -48,7 +48,7 @@ export async function loadSlides() {
 
       return {
         text: item.name,
-        slideUrl: item.slug,
+        slideUrl: `/portfolio/${item.slug}`,
         imageUrl: projects[0]?.content?.image.filename,
       };
     }

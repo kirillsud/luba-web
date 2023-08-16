@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { ProjectStoryblok } from '../../../utils/components.storyblok';
 import { render, storyblokEditable } from '../../../utils/storyblok';
 import styles from './project.module.css';
@@ -15,16 +16,11 @@ export function Project({ blok }: ProjectProps) {
 
   return (
     <div className={styles.page} {...storyblokEditable(blok)}>
-      <figure>
+      <figure className={classNames('image-wide')}>
         <img src={blok.image.filename} alt={blok.image.alt ?? ''} />
         <figcaption>{blok.year}</figcaption>
       </figure>
-      {notEmptyDescription && (
-        <>
-          <hr />
-          {render(blok.description)}
-        </>
-      )}
+      {notEmptyDescription && render(blok.description)}
     </div>
   );
 }

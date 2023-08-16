@@ -1,3 +1,29 @@
-.container {
-  margin: calc(-1 * var(--page-padding));
+.primary-color {
+  color: var(--primary-color);
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 2rem 0;
+  list-style: none;
+}
+
+.menu li:not(:last-child) {
+  padding-right: 1rem;
+}
+
+.menu li:not(:last-child):after {
+  padding-left: 1rem;
+  content: '|';
+}
+
+a.active {
+  text-decoration: underline;
+}
+
+.slider {
+  margin: 0 calc(-2 * var(--page-padding));
+  height: 53.5vh;
 }

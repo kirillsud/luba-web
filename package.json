@@ -10,7 +10,7 @@
   },
   "private": true,
   "dependencies": {
-    "@apollo/client": "^3.7.17",
+    "@apollo/client": "^3.8.1",
     "@mdi/js": "7.2.96",
     "@mdi/react": "1.6.1",
     "@nx/next": "16.5.5",

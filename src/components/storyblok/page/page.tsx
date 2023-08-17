@@ -6,7 +6,7 @@ export interface PageProps {
 }
 
 export function Page({ blok }: PageProps) {
-  return <main {...storyblokEditable(blok)}>{render(blok.body)}</main>;
+  return <div {...storyblokEditable(blok)}>{render(blok.body)}</div>;
 }
 
 export default Page;

@@ -15,7 +15,7 @@ export default async function IndexPage() {
   return (
     <>
       <h2>
-        Concept art<span className={styles['primary-color']}>.</span>
+        Concept art<span className="color-primary">.</span>
         <br />
         Illustration
       </h2>

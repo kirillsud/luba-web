@@ -45,6 +45,24 @@ export default async function RootLayout({
         <meta name="viewport" content="width=device-width" />
         <meta charSet="utf-8" />
         <link rel="icon" href="/favicon.ico" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+          const appHeight = () => {
+            const doc = document.documentElement
+            doc.style.setProperty('--app-height', window.innerHeight + 'px')
+          }
+
+          let resizeTimer;
+          window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(appHeight, 250);
+          });
+
+          appHeight()
+        `,
+          }}
+        />
       </head>
 
       <body className={styles['container']}>

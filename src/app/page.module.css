@@ -1,5 +1,8 @@
-.primary-color {
-  color: var(--primary-color);
+.container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 0 var(--page-padding);
+  margin-top: 0 !important;
 }
 
 .menu {
@@ -20,17 +23,24 @@
 }
 
 a.active {
-  text-decoration: underline;
+  position: relative;
+}
+
+a.active:before {
+  position: absolute;
+  top: -.8em;
+  left: 0;
+  right: 0;
+  text-align: center;
+  content: '⎯⎯';
+  font-size: 1.4em;
+  color: var(--primary-color);
 }
 
 .slider {
   margin: 0 calc(-2 * var(--page-padding));
-  height: calc(100vh - 23.5rem);
 }
 
-@media (max-width: 768px) {
-  .slider {
-    /* Case for mobile browsers that return wrong 100vh */
-    height: calc(100vh - 32rem);
-  }
+.slider > * {
+  flex: 1;
 }

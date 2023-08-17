@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Alice&family=Cantarell&display=swap');
 
 :root {
+  --app-height: 100vh;
+
   --primary-color: #467714;
   --primary-color-hover: #55a103;
 
@@ -18,29 +20,6 @@ body {
   margin: 0;
   font-family: 'Cantarell', sans-serif;
   font-weight: 200;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  /*noinspection CssInvalidPropertyValue*/
-  min-height: -webkit-fill-available;
-}
-
-header,
-footer {
-  background-color: var(--overlay-color);
-  position: fixed;
-  width: 100%;
-  z-index: var(--max-zindex);
-  box-sizing: border-box;
-}
-
-footer {
-  bottom: 0;
-}
-
-main {
-  margin-top: 2.5rem;
-  margin-bottom: 3rem;
 }
 
 h1,
@@ -75,4 +54,8 @@ main > h2 {
   font-family: 'Alice', sans-serif;
   font-size: 3rem;
   text-align: center;
+}
+
+.color-primary {
+  color: var(--primary-color);
 }

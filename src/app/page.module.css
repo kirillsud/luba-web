@@ -25,5 +25,12 @@ a.active {
 
 .slider {
   margin: 0 calc(-2 * var(--page-padding));
-  height: 53.5vh;
+  height: calc(100vh - 23.5rem);
+}
+
+@media (max-width: 768px) {
+  .slider {
+    /* Case for mobile browsers that return wrong 100vh */
+    height: calc(100vh - 32rem);
+  }
 }

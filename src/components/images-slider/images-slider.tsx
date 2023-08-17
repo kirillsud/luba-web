@@ -86,11 +86,14 @@ export function ImagesSlider({
       className={classNames(styles['container'], {
         [styles['play']]: play,
       })}
-      onMouseOver={() => setPause(true)}
-      onMouseLeave={() => setPause(false)}
     >
-      {visibleSlides.current?.element}
-      {visibleSlides.previous?.element}
+      <div
+        onMouseOver={() => setPause(true)}
+        onMouseLeave={() => setPause(false)}
+      >
+        {visibleSlides.current?.element}
+        {visibleSlides.previous?.element}
+      </div>
 
       <div className={styles['controls']}>
         <button className={styles['prev']} onClick={() => moveSlide(-1)}>

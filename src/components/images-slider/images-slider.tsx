@@ -44,17 +44,13 @@ export function ImagesSlider({
         const newIndex =
           (slidesLen + (current?.index ?? 0) + offset) % slidesLen;
 
+        const previousIndex = current ? current.index : slides.length - 1;
+
         return {
-          previous:
-            current !== undefined
-              ? {
-                  ...current,
-                  element: renderSlide(
-                    slides[current.index],
-                    styles['previous']
-                  ),
-                }
-              : undefined,
+          previous: {
+            index: previousIndex,
+            element: renderSlide(slides[previousIndex], styles['previous']),
+          },
           current: {
             index: newIndex,
             element: renderSlide(slides[newIndex]),

@@ -79,13 +79,14 @@
   color: var(--button-color);
   padding: 0;
   background-color: var(--text-background);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .controls button:hover {
   color: var(--button-color-hover);
 }
 
-.controls button:disabled {
-  color: #ccc;
-  cursor: not-allowed;
+.controls button svg {
+  width: 4rem;
+  height: 4rem;
 }

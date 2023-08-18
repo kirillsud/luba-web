@@ -4,8 +4,6 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { Seconds } from 'src/utils/units';
-import chevronLeft from './chevron-left.svg';
-import chevronRight from './chevron-right.svg';
 import { Slide } from './image-slider.loader';
 import styles from './images-slider.module.css';
 import Timer from './timer/timer';
@@ -93,10 +91,34 @@ export function ImagesSlider({
 
       <div className={styles['controls']}>
         <button className={styles['prev']} onClick={() => moveSlide(-1)}>
-          <Image src={chevronLeft} width={48} height={48} alt="Previous" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1}
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.75 19.5L8.25 12l7.5-7.5"
+            />
+          </svg>
         </button>
         <button className={styles['next']} onClick={() => moveSlide(1)}>
-          <Image src={chevronRight} width={48} height={48} alt="Forward" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1}
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M8.25 4.5l7.5 7.5-7.5 7.5"
+            />
+          </svg>
         </button>
       </div>
 
@@ -118,7 +140,6 @@ function renderSlide(slide: Slide | undefined, ...classNames: string[]) {
   const slideContent = (
     <>
       <Image src={slide.imageUrl} alt={slide.text ?? ''} fill={true} />
-      {/*{slide.text ? <span>{slide.text}</span> : null}*/}
     </>
   );
 

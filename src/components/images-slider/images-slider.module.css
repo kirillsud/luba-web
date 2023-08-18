@@ -16,6 +16,10 @@
   position: absolute;
 }
 
+.slide.previous {
+  pointer-events: none;
+}
+
 .slide span {
   opacity: 0;
 }

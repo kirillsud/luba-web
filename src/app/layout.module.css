@@ -12,15 +12,16 @@
   grid-area: main;
   display: grid;
   grid-template-rows: auto 1fr;
-  padding: 0 var(--page-padding);
   text-align: center;
   background-color: var(--background-color);
 }
 
 .container main article {
-  width: calc(100% - var(--page-padding) * 2);
+  width: 100%;
   max-width: 1000px;
   margin: 2rem auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
 .container main > h2 {

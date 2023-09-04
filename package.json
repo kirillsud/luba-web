@@ -39,7 +39,7 @@
     "babel-jest": "^29.4.1",
     "cypress": "4.12.1",
     "eslint": "~8.48.0",
-    "eslint-config-next": "13.4.12",
+    "eslint-config-next": "13.4.19",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-import": "2.27.5",

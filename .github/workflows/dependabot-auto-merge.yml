@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: fastify/github-action-merge-dependabot@v3
+      - uses: kirillsud/github-action-merge-dependabot@main
         with:
           use-github-auto-merge: true
           target: minor

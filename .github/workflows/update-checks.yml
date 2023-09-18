@@ -92,7 +92,7 @@ jobs:
         env:
           MARKDOWN: ${{ steps.coverage.outputs.markdownReport }}
         # if: github.event_name == 'push'
-        run: mkdir -p ${{ env.WIKI_PATH }} && echo "${MARKDOWN}" > ${{ env.WIKI_PATH }}/test-coverage-report.md
+        run: mkdir -p ${{ env.WIKI_PATH }} && echo "${MARKDOWN}" > ${{ env.WIKI_PATH }}/Test-coverage-report.md
 
       - name: Publish coverage report to GitHub Wiki
         # if: github.event_name == 'push'

@@ -81,7 +81,7 @@ jobs:
           file: coverage/luba-web/clover.xml
 
       - name: Prepare coverage report in Markdown
-#        if: github.event_name == 'push'
+        if: github.event_name == 'push'
         uses: fingerprintjs/action-coverage-report-md@v1
         id: coverage
         with:
@@ -89,13 +89,13 @@ jobs:
           srcBasePath: './src'
 
       - name: Save coverage report to file
-#        if: github.event_name == 'push'
+        if: github.event_name == 'push'
         env:
           MARKDOWN: ${{ steps.coverage.outputs.markdownReport }}
         run: mkdir -p ${WIKI_PATH} && echo "${MARKDOWN}" > ${WIKI_PATH}/Test-coverage-report.md
 
       - name: Publish coverage report to GitHub Wiki
-#        if: github.event_name == 'push'
+        if: github.event_name == 'push'
         uses: Andrew-Chen-Wang/github-wiki-action@v4
         with:
           path: ${{ env.WIKI_PATH }}

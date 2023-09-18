@@ -83,10 +83,10 @@ jobs:
       - name: Prepare coverage report in Markdown
         if: github.event_name == 'push'
 #        uses: fingerprintjs/action-coverage-report-md@v1
-        uses: saschanowak/CloverCodeCoverageSummary@v0.1.0
+        uses: saschanowak/CloverCodeCoverageSummary@0.4.0
         id: coverage
         with:
-          filename: './coverage/luba-web/clover.xml'
+          filename: coverage/luba-web/clover.xml
 #          textReportPath: './coverage/luba-web/coverage.txt'
 #          srcBasePath: './src'
 

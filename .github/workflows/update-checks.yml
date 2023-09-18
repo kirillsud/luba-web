@@ -82,17 +82,20 @@ jobs:
 
       - name: Prepare coverage report in Markdown
         if: github.event_name == 'push'
-        uses: fingerprintjs/action-coverage-report-md@v1
+#        uses: fingerprintjs/action-coverage-report-md@v1
+        uses: saschanowak/CloverCodeCoverageSummary@v0.1.0
         id: coverage
         with:
-          textReportPath: './coverage/luba-web/coverage.txt'
-          srcBasePath: './src'
+          filename: './coverage/luba-web/clover.xml'
+#          textReportPath: './coverage/luba-web/coverage.txt'
+#          srcBasePath: './src'
 
       - name: Save coverage report to file
         if: github.event_name == 'push'
-        env:
-          MARKDOWN: ${{ steps.coverage.outputs.markdownReport }}
-        run: mkdir -p ${WIKI_PATH} && echo "${MARKDOWN}" > ${WIKI_PATH}/Test-coverage-report.md
+#        env:
+#          MARKDOWN: ${{ steps.coverage.outputs.markdownReport }}
+#        run: mkdir -p ${WIKI_PATH} && echo "${MARKDOWN}" > ${WIKI_PATH}/Test-coverage-report.md
+        run: mkdir -p ${WIKI_PATH} && mv code-coverage-details.md ${WIKI_PATH}/Test-coverage-report.md
 
       - name: Publish coverage report to GitHub Wiki
         if: github.event_name == 'push'

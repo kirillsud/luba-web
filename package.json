@@ -14,7 +14,7 @@
     "@nx/next": "16.5.5",
     "@storyblok/react": "^2.4.5",
     "classnames": "^2.3.2",
-    "next": "13.4.19",
+    "next": "14.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "storyblok-rich-text-react-renderer": "^2.9.0",
